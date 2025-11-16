@@ -1,0 +1,82 @@
+[
+    {
+        "name": "Vanilla Dreams Soy Candle",
+        "price": 24.99,
+        "description": "A luxurious soy candle with warm vanilla notes that creates a cozy and inviting atmosphere. Hand-poured with premium soy wax and natural cotton wick for a clean, long-lasting burn.",
+        "ratings": 4.5,
+        "images": [
+            {
+                "public_id": "candles/vanilla_dreams_1",
+                "url": "https://images.unsplash.com/photo-1602874801006-1c2d1b3c2c1a"
+            }
+        ],
+        "category": "Scented Candles",
+        "seller": "LumiScents",
+        "stock": 50,
+        "numOfReviews": 12
+    },
+    {
+        "name": "Lavender Serenity Aromatherapy Candle",
+        "price": 32.99,
+        "description": "Relax and unwind with our premium lavender aromatherapy candle. Made with pure essential oils and natural soy wax for the ultimate relaxation experience.",
+        "ratings": 4.8,
+        "images": [
+            {
+                "public_id": "candles/lavender_serenity_1",
+                "url": "https://images.unsplash.com/photo-1571115764595-644a1f56a55c"
+            }
+        ],
+        "category": "Aromatherapy",
+        "seller": "LumiScents",
+        "stock": 35,
+        "numOfReviews": 18
+    },
+    {
+        "name": "Ocean Breeze Pillar Candle",
+        "price": 18.99,
+        "description": "Bring the refreshing scent of the ocean into your home with this beautiful pillar candle. Features notes of sea salt, marine air, and coastal florals.",
+        "ratings": 4.3,
+        "images": [
+            {
+                "public_id": "candles/ocean_breeze_1",
+                "url": "https://images.unsplash.com/photo-1578662996442-48f60103fc96"
+            }
+        ],
+        "category": "Pillar Candles",
+        "seller": "LumiScents",
+        "stock": 42,
+        "numOfReviews": 8
+    },
+    {
+        "name": "Cinnamon Spice Jar Candle",
+        "price": 28.99,
+        "description": "Warm your home with the comforting scent of cinnamon and spices. Perfect for autumn evenings and holiday celebrations. 40-hour burn time.",
+        "ratings": 4.6,
+        "images": [
+            {
+                "public_id": "candles/cinnamon_spice_1",
+                "url": "https://images.unsplash.com/photo-1544947950-fa07a98d237f"
+            }
+        ],
+        "category": "Jar Candles",
+        "seller": "LumiScents",
+        "stock": 28,
+        "numOfReviews": 15
+    },
+    {
+        "name": "Tea Light Candle Set (12 pack)",
+        "price": 12.99,
+        "description": "Set of 12 unscented tea light candles perfect for creating ambient lighting. Made with natural paraffin wax and cotton wicks. 4-hour burn time each.",
+        "ratings": 4.2,
+        "images": [
+            {
+                "public_id": "candles/tea_lights_1",
+                "url": "https://images.unsplash.com/photo-1571115764595-644a1f56a55c"
+            }
+        ],
+        "category": "Tea Light Candles",
+        "seller": "LumiScents",
+        "stock": 100,
+        "numOfReviews": 6
+    }
+]
