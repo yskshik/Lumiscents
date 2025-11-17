@@ -169,7 +169,7 @@ const Dashboard = () => {
             // Add title
             doc.setFontSize(20);
             doc.setTextColor(107, 70, 193);
-            doc.text('FleurEase - Dashboard Report', margin, finalY);
+            doc.text('Lumiscents - Dashboard Report', margin, finalY);
             finalY += 10;
             
             // Add date range

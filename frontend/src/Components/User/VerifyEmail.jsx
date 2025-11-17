@@ -71,7 +71,7 @@ const VerifyEmail = () => {
                                         <h2 className="text-success">Email Verified!</h2>
                                     </div>
                                     <Alert variant="success">
-                                        <Alert.Heading>Welcome to LumiScents! 🕯️</Alert.Heading>
+                                        <Alert.Heading>Welcome to Lumiscents! 🕯️</Alert.Heading>
                                         <p>Your email has been successfully verified. You are now logged in and can start exploring our premium candle collection.</p>
                                         <hr />
                                         <p className="mb-0">

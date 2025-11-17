@@ -15,7 +15,7 @@ const generateOrderPDF = (order, user) => {
         <html>
         <head>
             <meta charset="utf-8">
-            <title>LumiScents - Order Receipt</title>
+            <title>Lumiscents - Order Receipt</title>
             <style>
                 body {
                     font-family: 'Arial', sans-serif;
@@ -155,7 +155,7 @@ const generateOrderPDF = (order, user) => {
         </head>
         <body>
             <div class="header">
-                <div class="logo">🕯️ LumiScents</div>
+                <div class="logo">🕯️ Lumiscents</div>
                 <div class="tagline">Illuminate Your Space with Premium Candles</div>
             </div>
 
@@ -233,13 +233,13 @@ const generateOrderPDF = (order, user) => {
 
             <div class="thank-you">
                 <h3>Thank You for Your Order! 🙏</h3>
-                <p>We appreciate your business and hope you enjoy your premium candles from LumiScents.</p>
+                <p>We appreciate your business and hope you enjoy your premium candles from Lumiscents.</p>
                 <p>For any questions or concerns, please contact us at support@lumiscents.com</p>
             </div>
 
             <div class="footer">
                 <p>This is an automatically generated receipt. Please keep this for your records.</p>
-                <p>© ${new Date().getFullYear()} LumiScents. All rights reserved.</p>
+                <p>© ${new Date().getFullYear()} Lumiscents. All rights reserved.</p>
                 <p>Generated on: ${moment().format('MMMM DD, YYYY [at] hh:mm A')}</p>
             </div>
         </body>
@@ -266,7 +266,7 @@ const generateOrderPDF = (order, user) => {
         // For now, create a simple text receipt instead of PDF
         // This avoids package compatibility issues
         const textReceipt = `
-LumiScents Order Receipt
+Lumiscents Order Receipt
 ========================
 Order ID: ${order._id}
 Date: ${moment(order.createdAt).format('MMMM DD, YYYY')}
@@ -281,7 +281,7 @@ Shipping: ₱${shippingPrice.toFixed(2)}
 Tax: ₱${taxPrice.toFixed(2)}
 Total: ₱${totalPrice.toFixed(2)}
 
-Thank you for shopping with LumiScents!
+Thank you for shopping with Lumiscents!
         `;
         
         // Convert text to buffer for email attachment

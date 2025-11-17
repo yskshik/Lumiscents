@@ -111,7 +111,7 @@ const ConfirmOrder = () => {
                             boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
                             marginBottom: '20px'
                         }}>
-                            <h4 style={{ color: '#6b46c1', marginBottom: '20px', fontWeight: 'bold' }}>
+                            <h4 style={{ color: 'var(--secondary-color)', marginBottom: '20px', fontWeight: 'bold' }}>
                                 <i className="fa fa-truck mr-2"></i>
                                 Shipping Information
                             </h4>
@@ -185,7 +185,7 @@ const ConfirmOrder = () => {
                             position: 'sticky',
                             top: '20px'
                         }}>
-                            <h4 style={{ color: '#6b46c1', marginBottom: '25px', fontWeight: 'bold' }}>
+                            <h4 style={{ color: 'var(--secondary-color)', marginBottom: '25px', fontWeight: 'bold' }}>
                                 Order Summary
                             </h4>
 
@@ -210,7 +210,7 @@ const ConfirmOrder = () => {
 
                             <div style={{ marginBottom: '25px', display: 'flex', justifyContent: 'space-between' }}>
                                 <span style={{ color: '#333', fontSize: '1.2rem', fontWeight: 'bold' }}>Total:</span>
-                                <span style={{ color: '#6b46c1', fontSize: '1.3rem', fontWeight: 'bold' }}>₱{Number(totalPrice).toLocaleString()}</span>
+                                <span style={{ color: 'var(--secondary-color)', fontSize: '1.3rem', fontWeight: 'bold' }}>₱{Number(totalPrice).toLocaleString()}</span>
                             </div>
 
                             <button
@@ -221,7 +221,7 @@ const ConfirmOrder = () => {
                                     padding: '15px',
                                     borderRadius: '10px',
                                     border: 'none',
-                                    backgroundColor: loading ? '#ccc' : '#6b46c1',
+                                    backgroundColor: loading ? '#ccc' : 'var(--secondary-color)',
                                     color: 'white',
                                     fontSize: '1.1rem',
                                     fontWeight: '600',
@@ -230,13 +230,13 @@ const ConfirmOrder = () => {
                                 }}
                                 onMouseEnter={(e) => {
                                     if (!loading) {
-                                        e.currentTarget.style.backgroundColor = '#8b5cf6';
+                                        e.currentTarget.style.backgroundColor = 'var(--accent-color)';
                                         e.currentTarget.style.transform = 'translateY(-2px)';
                                     }
                                 }}
                                 onMouseLeave={(e) => {
                                     if (!loading) {
-                                        e.currentTarget.style.backgroundColor = '#6b46c1';
+                                        e.currentTarget.style.backgroundColor = 'var(--secondary-color)';
                                         e.currentTarget.style.transform = 'translateY(0)';
                                     }
                                 }}
@@ -256,7 +256,7 @@ const ConfirmOrder = () => {
 
                             <p style={{ color: '#666', fontSize: '0.9rem', marginTop: '15px', textAlign: 'center' }}>
                                 <i className="fa fa-money mr-2"></i>
-                                Payment will be collected upon delivery
+                                Payment will be collected upon delivery.
                             </p>
                         </div>
                     </div>

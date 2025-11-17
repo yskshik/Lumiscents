@@ -78,6 +78,8 @@ const ProcessOrder = () => {
                 return '#17a2b8';
             case 'Delivered':
                 return '#28a745';
+            case 'Cancelled':
+                return '#dc3545';
             default:
                 return '#6c757d';
         }
@@ -262,6 +264,7 @@ const ProcessOrder = () => {
                                             {orderStatus === 'Processing' && '⏳'}
                                             {orderStatus === 'Shipped' && '🚚'}
                                             {orderStatus === 'Delivered' && '✅'}
+                                            {orderStatus === 'Cancelled' && '❌'}
                                         </div>
                                         <h3 style={{
                                             color: getStatusColor(orderStatus),
@@ -285,6 +288,21 @@ const ProcessOrder = () => {
                                         Update Status
                                     </h4>
 
+                                    {orderStatus === 'Cancelled' ? (
+                                    <div style={{
+                                        backgroundColor: '#fff3f3',
+                                        padding: '20px',
+                                        borderRadius: '10px',
+                                        border: '2px solid #dc3545',
+                                        textAlign: 'center',
+                                        marginBottom: '20px'
+                                    }}>
+                                        <p style={{ color: '#721c24', margin: 0, fontWeight: '600' }}>
+                                            <i className="fa fa-ban mr-2"></i>
+                                            This order has been cancelled by the customer. Status cannot be changed.
+                                        </p>
+                                    </div>
+                                ) : (
                                     <form onSubmit={updateOrderHandler}>
                                         <div className="form-group" style={{ marginBottom: '20px' }}>
                                             <label style={{ fontWeight: '600', marginBottom: '10px', display: 'block' }}>
@@ -378,6 +396,7 @@ const ProcessOrder = () => {
                                             Back to Orders
                                         </Link>
                                     </form>
+                                )}
                                 </div>
                             </div>
                         </div>

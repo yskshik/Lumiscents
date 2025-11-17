@@ -201,7 +201,7 @@ const Dashboard = () => {
             // Add title
             doc.setFontSize(18);
             doc.setTextColor(139, 69, 19);
-            doc.text('LumiScents - Dashboard Report', margin, finalY);
+            doc.text('Lumiscents - Dashboard Report', margin, finalY);
             finalY += 15;
             
             // Add date range if applicable

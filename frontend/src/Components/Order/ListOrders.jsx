@@ -129,13 +129,18 @@ const ListOrders = () => {
                                                 <th style={{ padding: '15px', color: 'var(--secondary-color)', fontWeight: 'bold', borderBottom: '2px solid var(--warm-beige)' }}>
                                                     Status
                                                 </th>
+                                                <th style={{ padding: '15px', color: 'var(--secondary-color)', fontWeight: 'bold', borderBottom: '2px solid var(--warm-beige)' }}>
+                                                    Main Product
+                                                </th>
                                                 <th style={{ padding: '15px', color: 'var(--secondary-color)', fontWeight: 'bold', borderBottom: '2px solid var(--warm-beige)', textAlign: 'center' }}>
                                                     Actions
                                                 </th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {orders.map(order => (
+                                            {orders.map(order => {
+                                                const mainItem = order.orderItems && order.orderItems[0];
+                                                return (
                                                 <tr key={order._id} style={{ transition: 'background-color 0.2s ease' }}>
                                                     <td style={{ padding: '15px', verticalAlign: 'middle' }}>
                                                         <span style={{ 
@@ -158,7 +163,7 @@ const ListOrders = () => {
                                                     <td style={{ padding: '15px', verticalAlign: 'middle' }}>
                                                         <span style={{ 
                                                             fontWeight: 'bold', 
-                                                            color: '#6b46c1',
+                                                            color: 'var(--secondary-color)',
                                                             fontSize: '1.1rem'
                                                         }}>
                                                             ₱{order.totalPrice.toLocaleString()}
@@ -181,7 +186,31 @@ const ListOrders = () => {
                                                             {order.orderStatus}
                                                         </span>
                                                     </td>
+
+                                                    {/* Main Product preview */}
+                                                    <td style={{ padding: '15px', verticalAlign: 'middle' }}>
+                                                        {mainItem ? (
+                                                            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                                                <img
+                                                                    src={mainItem.image}
+                                                                    alt={mainItem.name}
+                                                                    style={{
+                                                                        width: '45px',
+                                                                        height: '45px',
+                                                                        objectFit: 'cover',
+                                                                        borderRadius: '10px'
+                                                                    }}
+                                                                />
+                                                                <span style={{ color: '#333', fontWeight: 500, fontSize: '0.95rem' }}>
+                                                                    {mainItem.name}
+                                                                </span>
+                                                            </div>
+                                                        ) : (
+                                                            <span style={{ color: '#888', fontSize: '0.9rem' }}>—</span>
+                                                        )}
+                                                    </td>
                                                     <td style={{ padding: '15px', verticalAlign: 'middle', textAlign: 'center' }}>
+                                                        {/* View Details button */}
                                                         <Link
                                                             to={`/order/${order._id}`}
                                                             style={{
@@ -193,7 +222,8 @@ const ListOrders = () => {
                                                                 fontSize: '0.9rem',
                                                                 fontWeight: '600',
                                                                 transition: 'all 0.3s ease',
-                                                                display: 'inline-block'
+                                                                display: 'inline-block',
+                                                                marginRight: '8px'
                                                             }}
                                                             onMouseEnter={(e) => {
                                                                 e.currentTarget.style.backgroundColor = 'var(--accent-color)'
@@ -207,9 +237,39 @@ const ListOrders = () => {
                                                             <i className="fa fa-eye mr-2"></i>
                                                             View Details
                                                         </Link>
+
+                                                        {/* Review button only for delivered orders */}
+                                                        {order.orderStatus === 'Delivered' && (
+                                                            <Link
+                                                                to={`/order/${order._id}`}
+                                                                style={{
+                                                                    padding: '10px 18px',
+                                                                    borderRadius: '8px',
+                                                                    backgroundColor: 'var(--secondary-color)',
+                                                                    color: 'white',
+                                                                    border: '2px solid var(--secondary-color)',
+                                                                    textDecoration: 'none',
+                                                                    fontSize: '0.9rem',
+                                                                    fontWeight: '600',
+                                                                    transition: 'all 0.3s ease',
+                                                                    display: 'inline-block'
+                                                                }}
+                                                                onMouseEnter={(e) => {
+                                                                    e.currentTarget.style.backgroundColor = 'var(--accent-color)';
+                                                                    e.currentTarget.style.color = 'white';
+                                                                }}
+                                                                onMouseLeave={(e) => {
+                                                                    e.currentTarget.style.backgroundColor = 'var(--secondary-color)';
+                                                                    e.currentTarget.style.color = 'white';
+                                                                }}
+                                                            >
+                                                                <i className="fa fa-star mr-2"></i>
+                                                                Review
+                                                            </Link>
+                                                        )}
                                                     </td>
                                                 </tr>
-                                            ))}
+                                                );})}
                                         </tbody>
                                     </table>
                                 </div>

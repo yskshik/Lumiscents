@@ -83,15 +83,15 @@ const Cart = () => {
                     </div>
 
                     {cartItems.length === 0 ? (
-                        <div className="lumiscents-empty-state">
-                            <div className="lumiscents-empty-icon">🛒</div>
-                            <h3 className="lumiscents-empty-title">Your cart is empty</h3>
-                            <p className="lumiscents-empty-text">
+                        <div className="Lumiscents-empty-state">
+                            <div className="Lumiscents-empty-icon">🛒</div>
+                            <h3 className="Lumiscents-empty-title">Your cart is empty</h3>
+                            <p className="Lumiscents-empty-text">
                                 Add some beautiful candles to your cart!
                             </p>
                             <Link
                                 to="/products"
-                                className="btn lumiscents-btn"
+                                className="btn Lumiscents-btn"
                                 onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#8b5cf6'}
                                 onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#6b46c1'}
                             >

@@ -52,7 +52,7 @@ const productSchema = new mongoose.Schema({
     },
     seller: {
         type: String,
-        default: 'LumiScents'
+        default: 'Lumiscents'
     },
     stock: {
         type: Number,

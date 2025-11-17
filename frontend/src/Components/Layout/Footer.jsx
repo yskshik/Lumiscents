@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className="lumiscents-footer">
       <p className="lumiscents-footer-text">
-        LumiScents - Premium Scented Candles 🕯️ &copy; 2025
+        Lumiscents - Premium Scented Candles 🕯️ &copy; 2025
       </p>
     </footer>
   )

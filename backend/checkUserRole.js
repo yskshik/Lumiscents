@@ -4,7 +4,7 @@ require('dotenv').config();
 
 const checkUserRole = async () => {
     try {
-        await mongoose.connect(process.env.DB_LOCAL_URI || 'mongodb://localhost:27017/lumiscents');
+        await mongoose.connect(process.env.DB_LOCAL_URI || 'mongodb://localhost:27017/Lumiscents');
         console.log('Connected to MongoDB...');
 
         const users = await User.find({}, 'email role name');

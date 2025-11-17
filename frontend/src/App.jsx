@@ -1,8 +1,11 @@
-import './styles/lumiscents.css';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { CssBaseline } from '@mui/material';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import './styles/Lumiscents.css';
 import './App.css'
 
 import Header from './Components/Layout/Header';
@@ -45,11 +48,48 @@ import ProcessOrder from './Components/Admin/ProcessOrder';
 import ProductReviews from './Components/Admin/ProductReviews';
 import ProtectedRoute from './Components/Route/ProtectedRoute';
 
+// Create custom brown theme to override Material-UI default violet colors
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#6B4423', // Deep coffee brown
+    },
+    secondary: {
+      main: '#8B5A3C', // Warm medium brown
+    },
+    background: {
+      default: '#FFFEFA', // Warm white
+      paper: '#FFF8F0',   // Cream
+    },
+    text: {
+      primary: '#3E2723', // Rich dark brown
+      secondary: '#5D4037', // Medium brown
+    }
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: '10px',
+        },
+        containedPrimary: {
+          backgroundColor: '#6B4423',
+          '&:hover': {
+            backgroundColor: '#8B5A3C',
+          },
+        },
+      },
+    },
+  },
+});
+
 function App() {
 
   return (
-    <Router>
-      <div className="App">
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Router>
+        <div className="App brown-theme-override">
         <Header />
         <div className="container container-fluid">
           <Routes>
@@ -279,6 +319,7 @@ function App() {
         />
       </div>
     </Router>
+    </ThemeProvider>
   )
 }
 

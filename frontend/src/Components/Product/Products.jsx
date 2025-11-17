@@ -9,6 +9,269 @@ import {
     Typography, Button, Chip, IconButton, Rating, Tooltip, Fade
 } from '@mui/material';
 
+// Card component for individual product with image slideshow
+const ProductCard = ({ product, isInWishlist, isLastProduct, lastProductRef, toggleWishlist }) => {
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+    useEffect(() => {
+        const images = product.images || [];
+        if (!images.length) return;
+
+        const interval = setInterval(() => {
+            setCurrentImageIndex(prev => (prev + 1) % images.length);
+        }, 2500);
+
+        return () => clearInterval(interval);
+    }, [product.images]);
+
+    const handlePrevImage = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const images = product.images || [];
+        if (!images.length) return;
+        setCurrentImageIndex(prev => (prev - 1 + images.length) % images.length);
+    };
+
+    const handleNextImage = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const images = product.images || [];
+        if (!images.length) return;
+        setCurrentImageIndex(prev => (prev + 1) % images.length);
+    };
+
+    const cardRef = isLastProduct ? lastProductRef : null;
+
+    return (
+        <div 
+            ref={cardRef}
+            className="col-sm-12 col-md-6 col-lg-3 my-3"
+        >
+            <Card
+                elevation={2}
+                sx={{
+                    background: 'linear-gradient(135deg, #fdf8f1 0%, #faf6f2 100%)',
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    position: 'relative',
+                    borderRadius: '20px',
+                    transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                    border: '2px solid #e8d4b0',
+                    boxShadow: '0 4px 20px rgba(139, 69, 19, 0.1)',
+                    '&::before': {
+                        content: '""',
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        height: '5px',
+                        background: 'linear-gradient(90deg, #ffd700, #ff9b50, #ffd700)',
+                        backgroundSize: '200% 100%',
+                        animation: 'shimmer 3s infinite'
+                    },
+                    '&:hover': {
+                        transform: 'translateY(-8px) scale(1.02)',
+                        boxShadow: '0 8px 32px rgba(212, 165, 116, 0.15)',
+                        borderColor: '#ffd700'
+                    }
+                }}
+            >
+                {/* Wishlist Heart Button */}
+                <Tooltip title={isInWishlist ? "Remove from wishlist" : "Add to wishlist"} arrow>
+                    <IconButton
+                        onClick={(e) => toggleWishlist(product._id, e)}
+                        sx={{
+                            position: 'absolute',
+                            top: 12,
+                            right: 12,
+                            zIndex: 10,
+                            bgcolor: 'white',
+                            boxShadow: 2,
+                            '&:hover': {
+                                bgcolor: 'white',
+                                transform: 'scale(1.1)',
+                            }
+                        }}
+                    >
+                        <i 
+                            className={isInWishlist ? "fa fa-heart" : "fa fa-heart-o"}
+                            style={{
+                                color: isInWishlist ? '#8B4513' : '#999',
+                                fontSize: '1.2rem'
+                            }}
+                        ></i>
+                    </IconButton>
+                </Tooltip>
+
+                {/* Product Image with slideshow + arrows */}
+                <div style={{ position: 'relative' }}>
+                    <Link to={`/product/${product._id}`} style={{ textDecoration: 'none' }}>
+                        <CardMedia
+                            component="img"
+                            height="250"
+                            image={product.images[currentImageIndex]?.url || product.images[0]?.url || 'https://via.placeholder.com/250'}
+                            alt={product.name}
+                            sx={{
+                                objectFit: 'cover',
+                                transition: 'transform 0.3s ease',
+                                '&:hover': {
+                                    transform: 'scale(1.05)'
+                                }
+                            }}
+                        />
+                    </Link>
+
+                    {/* Arrow controls - only if multiple images */}
+                    {(product.images && product.images.length > 1) && (
+                        <>
+                            <IconButton
+                                onClick={handlePrevImage}
+                                sx={{
+                                    position: 'absolute',
+                                    top: '50%',
+                                    left: 8,
+                                    transform: 'translateY(-50%)',
+                                    bgcolor: 'rgba(255,255,255,0.9)',
+                                    '&:hover': { bgcolor: 'white' },
+                                    boxShadow: 2,
+                                    width: 32,
+                                    height: 32
+                                }}
+                            >
+                                <i className="fa fa-chevron-left" style={{ color: '#8B4513', fontSize: '0.9rem' }}></i>
+                            </IconButton>
+                            <IconButton
+                                onClick={handleNextImage}
+                                sx={{
+                                    position: 'absolute',
+                                    top: '50%',
+                                    right: 8,
+                                    transform: 'translateY(-50%)',
+                                    bgcolor: 'rgba(255,255,255,0.9)',
+                                    '&:hover': { bgcolor: 'white' },
+                                    boxShadow: 2,
+                                    width: 32,
+                                    height: 32
+                                }}
+                            >
+                                <i className="fa fa-chevron-right" style={{ color: '#8B4513', fontSize: '0.9rem' }}></i>
+                            </IconButton>
+                        </>
+                    )}
+                </div>
+
+                {/* Product Info */}
+                <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', p: 2.5 }}>
+                    <Link 
+                        to={`/product/${product._id}`} 
+                        style={{ textDecoration: 'none' }}
+                    >
+                        <Typography 
+                            variant="h6" 
+                            component="h3"
+                            sx={{
+                                fontWeight: 700,
+                                mb: 1.5,
+                                color: 'text.primary',
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis',
+                                whiteSpace: 'nowrap',
+                                '&:hover': {
+                                    color: 'var(--secondary-color)'
+                                }
+                            }}
+                        >
+                            {product.name}
+                        </Typography>
+                    </Link>
+
+                    {/* Rating */}
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1.5 }}>
+                        <Rating 
+                            value={product.ratings} 
+                            precision={0.1} 
+                            readOnly 
+                            size="small"
+                            sx={{ color: '#fdcc0d' }}
+                        />
+                        <Typography variant="body2" sx={{ fontWeight: 600, color: '#333' }}>
+                            {product.ratings.toFixed(2)}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                            ({product.numOfReviews})
+                        </Typography>
+                    </Box>
+
+                    {/* Price */}
+                    <Typography 
+                        variant="h5" 
+                        component="div"
+                        sx={{
+                            fontWeight: 700,
+                            color: 'var(--secondary-color)',
+                            mb: 2
+                        }}
+                    >
+                        ₱{product.price.toLocaleString()}
+                    </Typography>
+
+                    {/* Stock Status */}
+                    <Box sx={{ mb: 2 }}>
+                        {product.stock > 0 ? (
+                            <Chip 
+                                icon={<i className="fa fa-check-circle" style={{ fontSize: '0.9rem' }}></i>}
+                                label={`In Stock (${product.stock})`}
+                                size="small"
+                                sx={{ 
+                                    bgcolor: '#d4edda',
+                                    color: '#155724',
+                                    fontWeight: 600
+                                }}
+                            />
+                        ) : (
+                            <Chip 
+                                icon={<i className="fa fa-times-circle" style={{ fontSize: '0.9rem' }}></i>}
+                                label="Out of Stock"
+                                size="small"
+                                sx={{ 
+                                    bgcolor: '#f8d7da',
+                                    color: '#721c24',
+                                    fontWeight: 600
+                                }}
+                            />
+                        )}
+                    </Box>
+
+                    {/* View Details Button */}
+                    <Button
+                        component={Link}
+                        to={`/product/${product._id}`}
+                        variant="contained"
+                        fullWidth
+                        startIcon={<i className="fa fa-eye"></i>}
+                        sx={{
+                            mt: 'auto',
+                            bgcolor: 'var(--secondary-color)',
+                            borderRadius: '10px',
+                            py: 1.5,
+                            fontWeight: 600,
+                            textTransform: 'none',
+                            fontSize: '1rem',
+                            '&:hover': {
+                                bgcolor: 'var(--accent-color)',
+                                transform: 'scale(1.02)'
+                            }
+                        }}
+                    >
+                        View Details
+                    </Button>
+                </CardContent>
+            </Card>
+        </div>
+    );
+};
+
 const Products = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -477,193 +740,14 @@ const Products = () => {
                             const isLastProduct = products.length === index + 1;
 
                             return (
-                                <div 
-                                    key={product._id} 
-                                    ref={isLastProduct ? lastProductRef : null}
-                                    className="col-sm-12 col-md-6 col-lg-3 my-3"
-                                >
-                                    <Card
-                                        elevation={2}
-                                        sx={{
-                                            background: 'linear-gradient(135deg, #fdf8f1 0%, #faf6f2 100%)',
-                                            height: '100%',
-                                            display: 'flex',
-                                            flexDirection: 'column',
-                                            position: 'relative',
-                                            borderRadius: '20px',
-                                            transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-                                            border: '2px solid #e8d4b0',
-                                            boxShadow: '0 4px 20px rgba(139, 69, 19, 0.1)',
-                                            '&::before': {
-                                                content: '""',
-                                                position: 'absolute',
-                                                top: 0,
-                                                left: 0,
-                                                right: 0,
-                                                height: '5px',
-                                                background: 'linear-gradient(90deg, #ffd700, #ff9b50, #ffd700)',
-                                                backgroundSize: '200% 100%',
-                                                animation: 'shimmer 3s infinite'
-                                            },
-                                            '&:hover': {
-                                                transform: 'translateY(-8px) scale(1.02)',
-                                                boxShadow: '0 8px 32px rgba(212, 165, 116, 0.15)',
-                                                borderColor: '#ffd700'
-                                            }
-                                        }}
-                                    >
-                                        {/* Wishlist Heart Button */}
-                                        <Tooltip title={isInWishlist ? "Remove from wishlist" : "Add to wishlist"} arrow>
-                                            <IconButton
-                                                onClick={(e) => toggleWishlist(product._id, e)}
-                                                sx={{
-                                                    position: 'absolute',
-                                                    top: 12,
-                                                    right: 12,
-                                                    zIndex: 10,
-                                                    bgcolor: 'white',
-                                                    boxShadow: 2,
-                                                    '&:hover': {
-                                                        bgcolor: 'white',
-                                                        transform: 'scale(1.1)',
-                                                    }
-                                                }}
-                                            >
-                                                <i 
-                                                    className={isInWishlist ? "fa fa-heart" : "fa fa-heart-o"}
-                                                    style={{
-                                                        color: isInWishlist ? '#8B4513' : '#999',
-                                                        fontSize: '1.2rem'
-                                                    }}
-                                                ></i>
-                                            </IconButton>
-                                        </Tooltip>
-
-                                        {/* Product Image */}
-                                        <Link to={`/product/${product._id}`} style={{ textDecoration: 'none' }}>
-                                            <CardMedia
-                                                component="img"
-                                                height="250"
-                                                image={product.images[0]?.url || 'https://via.placeholder.com/250'}
-                                                alt={product.name}
-                                                sx={{
-                                                    objectFit: 'cover',
-                                                    transition: 'transform 0.3s ease',
-                                                    '&:hover': {
-                                                        transform: 'scale(1.05)'
-                                                    }
-                                                }}
-                                            />
-                                        </Link>
-
-                                        {/* Product Info */}
-                                        <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', p: 2.5 }}>
-                                            <Link 
-                                                to={`/product/${product._id}`} 
-                                                style={{ textDecoration: 'none' }}
-                                            >
-                                                <Typography 
-                                                    variant="h6" 
-                                                    component="h3"
-                                                    sx={{
-                                                        fontWeight: 700,
-                                                        mb: 1.5,
-                                                        color: 'text.primary',
-                                                        overflow: 'hidden',
-                                                        textOverflow: 'ellipsis',
-                                                        whiteSpace: 'nowrap',
-                                                        '&:hover': {
-                                                            color: 'var(--secondary-color)'
-                                                        }
-                                                    }}
-                                                >
-                                                    {product.name}
-                                                </Typography>
-                                            </Link>
-
-                                            {/* Rating */}
-                                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1.5 }}>
-                                                <Rating 
-                                                    value={product.ratings} 
-                                                    precision={0.1} 
-                                                    readOnly 
-                                                    size="small"
-                                                    sx={{ color: '#fdcc0d' }}
-                                                />
-                                                <Typography variant="body2" sx={{ fontWeight: 600, color: '#333' }}>
-                                                    {product.ratings.toFixed(2)}
-                                                </Typography>
-                                                <Typography variant="body2" color="text.secondary">
-                                                    ({product.numOfReviews})
-                                                </Typography>
-                                            </Box>
-
-                                            {/* Price */}
-                                            <Typography 
-                                                variant="h5" 
-                                                component="div"
-                                                sx={{
-                                                    fontWeight: 700,
-                                                    color: 'var(--secondary-color)',
-                                                    mb: 2
-                                                }}
-                                            >
-                                                ₱{product.price.toLocaleString()}
-                                            </Typography>
-
-                                            {/* Stock Status */}
-                                            <Box sx={{ mb: 2 }}>
-                                                {product.stock > 0 ? (
-                                                    <Chip 
-                                                        icon={<i className="fa fa-check-circle" style={{ fontSize: '0.9rem' }}></i>}
-                                                        label={`In Stock (${product.stock})`}
-                                                        size="small"
-                                                        sx={{ 
-                                                            bgcolor: '#d4edda',
-                                                            color: '#155724',
-                                                            fontWeight: 600
-                                                        }}
-                                                    />
-                                                ) : (
-                                                    <Chip 
-                                                        icon={<i className="fa fa-times-circle" style={{ fontSize: '0.9rem' }}></i>}
-                                                        label="Out of Stock"
-                                                        size="small"
-                                                        sx={{ 
-                                                            bgcolor: '#f8d7da',
-                                                            color: '#721c24',
-                                                            fontWeight: 600
-                                                        }}
-                                                    />
-                                                )}
-                                            </Box>
-
-                                            {/* View Details Button */}
-                                            <Button
-                                                component={Link}
-                                                to={`/product/${product._id}`}
-                                                variant="contained"
-                                                fullWidth
-                                                startIcon={<i className="fa fa-eye"></i>}
-                                                sx={{
-                                                    mt: 'auto',
-                                                    bgcolor: 'var(--secondary-color)',
-                                                    borderRadius: '10px',
-                                                    py: 1.5,
-                                                    fontWeight: 600,
-                                                    textTransform: 'none',
-                                                    fontSize: '1rem',
-                                                    '&:hover': {
-                                                        bgcolor: 'var(--accent-color)',
-                                                        transform: 'scale(1.02)'
-                                                    }
-                                                }}
-                                            >
-                                                View Details
-                                            </Button>
-                                        </CardContent>
-                                    </Card>
-                                </div>
+                                <ProductCard
+                                    key={product._id}
+                                    product={product}
+                                    isInWishlist={isInWishlist}
+                                    isLastProduct={isLastProduct}
+                                    lastProductRef={lastProductRef}
+                                    toggleWishlist={toggleWishlist}
+                                />
                             );
                         })
                     )}

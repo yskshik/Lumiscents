@@ -5,10 +5,13 @@ import Loader from '../Layout/Loader';
 import { getToken } from '../../Utils/helpers';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import ReviewDialog from '../Review/ReviewDialog';
 
 const OrderDetails = () => {
     const [order, setOrder] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [reviewDialogOpen, setReviewDialogOpen] = useState(false);
+    const [selectedProductId, setSelectedProductId] = useState(null);
     const { id } = useParams();
 
     useEffect(() => {
@@ -32,6 +35,11 @@ const OrderDetails = () => {
         }
     };
 
+    const handleOpenReview = (productId) => {
+        setSelectedProductId(productId);
+        setReviewDialogOpen(true);
+    };
+
     const getStatusColor = (status) => {
         switch (status) {
             case 'Processing':
@@ -40,8 +48,30 @@ const OrderDetails = () => {
                 return '#17a2b8';
             case 'Delivered':
                 return '#28a745';
+            case 'Cancelled':
+                return '#dc3545';
             default:
                 return '#6c757d';
+        }
+    };
+
+    const handleCancelOrder = async () => {
+        if (!window.confirm('Are you sure you want to cancel this order?')) {
+            return;
+        }
+
+        try {
+            const config = {
+                headers: {
+                    'Authorization': `Bearer ${getToken()}`
+                }
+            };
+
+            await axios.put(`${import.meta.env.VITE_API}/order/${id}/cancel`, {}, config);
+            toast.success('Order cancelled successfully');
+            fetchOrderDetails();
+        } catch (error) {
+            toast.error(error.response?.data?.message || 'Error cancelling order');
         }
     };
 
@@ -149,7 +179,8 @@ const OrderDetails = () => {
                                     display: 'flex',
                                     gap: '20px',
                                     padding: '15px 0',
-                                    borderBottom: '1px solid #e0e0e0'
+                                    borderBottom: '1px solid #e0e0e0',
+                                    alignItems: 'center'
                                 }}>
                                     <img
                                         src={item.image}
@@ -177,6 +208,34 @@ const OrderDetails = () => {
                                             {item.quantity} x ₱{item.price.toLocaleString()} = <strong style={{ color: 'var(--secondary-color)' }}>₱{(item.quantity * item.price).toLocaleString()}</strong>
                                         </p>
                                     </div>
+                                    {orderStatus === 'Delivered' && (
+                                        <button
+                                            type="button"
+                                            onClick={() => handleOpenReview(item.product)}
+                                            style={{
+                                                padding: '8px 16px',
+                                                borderRadius: '8px',
+                                                backgroundColor: 'white',
+                                                color: 'var(--secondary-color)',
+                                                border: '2px solid var(--secondary-color)',
+                                                fontWeight: 600,
+                                                fontSize: '0.9rem',
+                                                cursor: 'pointer',
+                                                transition: 'all 0.3s ease',
+                                                whiteSpace: 'nowrap'
+                                            }}
+                                            onMouseEnter={(e) => {
+                                                e.currentTarget.style.backgroundColor = 'var(--secondary-color)';
+                                                e.currentTarget.style.color = 'white';
+                                            }}
+                                            onMouseLeave={(e) => {
+                                                e.currentTarget.style.backgroundColor = 'white';
+                                                e.currentTarget.style.color = 'var(--secondary-color)';
+                                            }}
+                                        >
+                                            Review Product
+                                        </button>
+                                    )}
                                 </div>
                             ))}
                         </div>
@@ -271,35 +330,74 @@ const OrderDetails = () => {
                                 <span style={{ color: 'var(--secondary-color)', fontSize: '1.3rem', fontWeight: 'bold' }}>₱{totalPrice?.toLocaleString()}</span>
                             </div>
 
-                            <Link
-                                to="/orders/me"
-                                style={{
-                                    display: 'block',
-                                    textAlign: 'center',
-                                    padding: '15px',
-                                    borderRadius: '10px',
-                                    border: '2px solid var(--secondary-color)',
-                                    color: 'var(--secondary-color)',
-                                    textDecoration: 'none',
-                                    fontWeight: '600',
-                                    transition: 'all 0.3s ease'
-                                }}
-                                onMouseEnter={(e) => {
-                                    e.currentTarget.style.backgroundColor = 'var(--secondary-color)'
-                                    e.currentTarget.style.color = 'white';
-                                }}
-                                onMouseLeave={(e) => {
-                                    e.currentTarget.style.backgroundColor = 'transparent';
-                                    e.currentTarget.style.color = 'var(--secondary-color)';
-                                }}
-                            >
-                                <i className="fa fa-arrow-left mr-2"></i>
-                                Back to Orders
-                            </Link>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                                {orderStatus === 'Processing' && (
+                                    <button
+                                        type="button"
+                                        onClick={handleCancelOrder}
+                                        style={{
+                                            width: '100%',
+                                            padding: '12px',
+                                            borderRadius: '10px',
+                                            border: '2px solid #dc3545',
+                                            backgroundColor: 'white',
+                                            color: '#dc3545',
+                                            fontWeight: 600,
+                                            cursor: 'pointer',
+                                            transition: 'all 0.3s ease'
+                                        }}
+                                        onMouseEnter={(e) => {
+                                            e.currentTarget.style.backgroundColor = '#dc3545';
+                                            e.currentTarget.style.color = 'white';
+                                        }}
+                                        onMouseLeave={(e) => {
+                                            e.currentTarget.style.backgroundColor = 'white';
+                                            e.currentTarget.style.color = '#dc3545';
+                                        }}
+                                    >
+                                        <i className="fa fa-times-circle mr-2"></i>
+                                        Cancel Order
+                                    </button>
+                                )}
+
+                                <Link
+                                    to="/orders/me"
+                                    style={{
+                                        display: 'block',
+                                        textAlign: 'center',
+                                        padding: '15px',
+                                        borderRadius: '10px',
+                                        border: '2px solid var(--secondary-color)',
+                                        color: 'var(--secondary-color)',
+                                        textDecoration: 'none',
+                                        fontWeight: '600',
+                                        transition: 'all 0.3s ease'
+                                    }}
+                                    onMouseEnter={(e) => {
+                                        e.currentTarget.style.backgroundColor = 'var(--secondary-color)'
+                                        e.currentTarget.style.color = 'white';
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        e.currentTarget.style.backgroundColor = 'transparent';
+                                        e.currentTarget.style.color = 'var(--secondary-color)';
+                                    }}
+                                >
+                                    <i className="fa fa-arrow-left mr-2"></i>
+                                    Back to Orders
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <ReviewDialog
+                open={reviewDialogOpen}
+                onClose={() => setReviewDialogOpen(false)}
+                productId={selectedProductId}
+                existingReview={null}
+                onSuccess={() => { }}
+            />
         </Fragment>
     );
 };

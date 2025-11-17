@@ -19,13 +19,6 @@ const Register = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Add floating animation
-        const candles = document.querySelectorAll('.floating-candle');
-        candles.forEach((candle, index) => {
-            if (candle) {
-                candle.style.animationDelay = `${index * 0.5}s`;
-            }
-        });
     }, []);
 
     const handleAvatarChange = (e) => {
@@ -104,12 +97,6 @@ const Register = () => {
         <div className="lumiscents-auth-container">
             {/* Floating Decorations */}
             <div className="lumiscents-candles-bg">
-                <div className="floating-candle" style={{ left: '5%', top: '15%' }}>🕯️</div>
-                <div className="floating-candle" style={{ left: '85%', top: '10%' }}>🕯️</div>
-                <div className="floating-candle" style={{ left: '8%', top: '80%' }}>🕯️</div>
-                <div className="floating-candle" style={{ left: '90%', top: '85%' }}>🕯️</div>
-                <div className="floating-candle" style={{ left: '45%', top: '5%' }}>🕯️</div>
-                <div className="floating-candle" style={{ left: '50%', top: '90%' }}>🕯️</div>
             </div>
 
             {/* Register Form */}
@@ -118,7 +105,7 @@ const Register = () => {
                 <div className="lumiscents-auth-header">
                     <div className="lumiscents-logo">
                         <LocalFireDepartment className="lumiscents-logo-icon" />
-                        <h1>LumiScents</h1>
+                        <h1>Lumiscents</h1>
                     </div>
                     <h2 className="lumiscents-auth-subtitle">Create Account</h2>
                     <p className="lumiscents-auth-description">Join our candle community</p>

@@ -62,9 +62,6 @@ const NewProduct = () => {
             return;
         }
 
-        setImages([]);
-        setImagesPreview([]);
-
         files.forEach(file => {
             const reader = new FileReader();
 
@@ -107,7 +104,7 @@ const NewProduct = () => {
             description: data.description,
             category: data.category,
             stock: data.stock,
-            seller: 'FleurEase',
+            seller: 'Lumiscents',
             images: images,
             mainImage: mainImageIndex
         };
@@ -158,7 +155,7 @@ const NewProduct = () => {
                             padding: '30px',
                             boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
                         }}>
-                            <h1 style={{ color: 'white', fontWeight: 'bold', marginBottom: '30px' }}>
+                            <h1 style={{ color: 'black', fontWeight: 'bold', marginBottom: '30px' }}>
                                 <i className="fa fa-plus-circle mr-2"></i>
                                 Create New Product
                             </h1>
@@ -362,7 +359,7 @@ const NewProduct = () => {
                                                                     top: '5px',
                                                                     left: '5px',
                                                                     backgroundColor: 'var(--secondary-color)',
-                                                                    color: 'white',
+                                                                    color: 'black',
                                                                     padding: '3px 8px',
                                                                     borderRadius: '5px',
                                                                     fontSize: '0.75rem',
@@ -383,7 +380,7 @@ const NewProduct = () => {
                                                                     className="btn btn-sm"
                                                                     style={{
                                                                         backgroundColor: mainImageIndex === index ? 'var(--primary-color)' : '#8B4513',
-                                                                        color: 'white',
+                                                                        color: 'black',
                                                                         fontSize: '0.75rem',
                                                                         padding: '3px 8px'
                                                                     }}
@@ -418,7 +415,7 @@ const NewProduct = () => {
                                                 disabled={loading}
                                                 style={{
                                                     backgroundColor: 'var(--secondary-color)',
-                                                    color: 'white',
+                                                    color: 'black',
                                                     borderRadius: '25px',
                                                     padding: '12px 40px',
                                                     fontWeight: '500',
@@ -444,7 +441,7 @@ const NewProduct = () => {
                                                 className="btn btn-lg"
                                                 style={{
                                                     backgroundColor: '#8B4513',
-                                                    color: 'white',
+                                                    color: 'black',
                                                     borderRadius: '25px',
                                                     padding: '12px 40px',
                                                     fontWeight: '500',

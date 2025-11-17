@@ -91,6 +91,50 @@ exports.deleteOrder = async (req, res, next) => {
     })
 }
 
+// Cancel own order (user) => /api/v1/order/:id/cancel
+exports.cancelMyOrder = async (req, res, next) => {
+    try {
+        const order = await Order.findById(req.params.id);
+
+        if (!order) {
+            return res.status(404).json({
+                success: false,
+                message: 'Order not found'
+            });
+        }
+
+        // Ensure this order belongs to the logged-in user
+        if (order.user.toString() !== req.user._id.toString()) {
+            return res.status(403).json({
+                success: false,
+                message: 'You are not allowed to cancel this order'
+            });
+        }
+
+        // Only allow cancelling while processing
+        if (order.orderStatus !== 'Processing') {
+            return res.status(400).json({
+                success: false,
+                message: 'Only orders that are still processing can be cancelled'
+            });
+        }
+
+        order.orderStatus = 'Cancelled';
+        await order.save();
+
+        return res.status(200).json({
+            success: true,
+            message: 'Order cancelled successfully'
+        });
+    } catch (error) {
+        console.error('Cancel order error:', error);
+        return res.status(500).json({
+            success: false,
+            message: error.message || 'Error cancelling order'
+        });
+    }
+}
+
 exports.updateOrder = async (req, res, next) => {
     try {
         const order = await Order.findById(req.params.id).populate('user', 'name email')
@@ -106,6 +150,13 @@ exports.updateOrder = async (req, res, next) => {
             return res.status(400).json({
                 success: false,
                 message: 'You have already delivered this order'
+            })
+        }
+
+        if (order.orderStatus === 'Cancelled') {
+            return res.status(400).json({
+                success: false,
+                message: 'Cannot change status of a cancelled order'
             })
         }
 
@@ -549,8 +600,8 @@ async function sendOrderEmail(order, pdfPath) {
                 <hr style="border: none; border-top: 1px solid #DEB887; margin: 30px 0;">
                 
                 <p style="color: #A0522D; font-size: 14px; text-align: center;">
-                    Thank you for choosing LumiScents! 🕯️<br>
-                    © ${new Date().getFullYear()} LumiScents. All rights reserved.<br>
+                    Thank you for choosing Lumiscents! 🕯️<br>
+                    © ${new Date().getFullYear()} Lumiscents. All rights reserved.<br>
                     "Illuminating your world with premium scents"
                 </p>
             </div>
@@ -559,7 +610,7 @@ async function sendOrderEmail(order, pdfPath) {
 
     await sendEmail({
         email: order.user.email,
-        subject: `🕯️ LumiScents - Order ${order._id} Status Updated to ${order.orderStatus}`,
+        subject: `🕯️ Lumiscents - Order ${order._id} Status Updated to ${order.orderStatus}`,
         message,
         attachments: [
             {

@@ -4,9 +4,9 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 // Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyCm1luQ9QTdZf3T6lVm4uvRnxHOge1AwgI",
-    authDomain: "fleurease-e18ea.firebaseapp.com",
-    projectId: "fleurease-e18ea",
-    storageBucket: "fleurease-e18ea.firebasestorage.app",
+    authDomain: "fLumiscents-e18ea.firebaseapp.com",
+    projectId: "fLumiscents-e18ea",
+    storageBucket: "fLumiscents-e18ea.firebasestorage.app",
     messagingSenderId: "235554798693",
     appId: "1:235554798693:web:625e49247db69e3ae7da8c",
     measurementId: "G-6NYM7NE7PJ"

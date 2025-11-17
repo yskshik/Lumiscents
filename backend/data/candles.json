@@ -11,7 +11,7 @@
             }
         ],
         "category": "Scented Candles",
-        "seller": "LumiScents",
+        "seller": "Lumiscents",
         "stock": 50,
         "numOfReviews": 12
     },
@@ -27,7 +27,7 @@
             }
         ],
         "category": "Aromatherapy",
-        "seller": "LumiScents",
+        "seller": "Lumiscents",
         "stock": 35,
         "numOfReviews": 18
     },
@@ -43,7 +43,7 @@
             }
         ],
         "category": "Pillar Candles",
-        "seller": "LumiScents",
+        "seller": "Lumiscents",
         "stock": 42,
         "numOfReviews": 8
     },
@@ -59,7 +59,7 @@
             }
         ],
         "category": "Jar Candles",
-        "seller": "LumiScents",
+        "seller": "Lumiscents",
         "stock": 28,
         "numOfReviews": 15
     },
@@ -75,7 +75,7 @@
             }
         ],
         "category": "Tea Light Candles",
-        "seller": "LumiScents",
+        "seller": "Lumiscents",
         "stock": 100,
         "numOfReviews": 6
     }

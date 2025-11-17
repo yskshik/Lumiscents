@@ -60,14 +60,14 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                     boxShadow: isOpen ? '2px 0 10px rgba(0,0,0,0.1)' : 'none'
                 }}
             >
-                <nav id="sidebar">
+                <nav id="sidebar" className="lumiscents-admin-sidebar">
                     <div className="sidebar-header" style={{
                         padding: '20px',
                         borderBottom: '1px solid rgba(255,255,255,0.2)',
-                        backgroundColor: '#5a3a9e'
+                        backgroundColor: 'var(--secondary-color)'
                     }}>
                         <h3 style={{ color: 'white', fontWeight: 'bold', margin: 0, fontSize: '1.3rem' }}>
-                            🕯️ LumiScents
+                            🕯️ Lumiscents
                         </h3>
                         <p style={{ color: '#e9d5ff', margin: '5px 0 0 0', fontSize: '0.85rem' }}>Admin Panel</p>
                     </div>

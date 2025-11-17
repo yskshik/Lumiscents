@@ -77,12 +77,12 @@ exports.registerUser = async (req, res, next) => {
                     <hr style="border: none; border-top: 1px solid #DEB887; margin: 30px 0;">
                     <div style="text-align: center; color: #6B4423;">
                         <p style="margin: 0 0 10px 0; font-size: 14px;">Warm regards,</p>
-                        <p style="margin: 0; font-size: 16px; font-weight: bold; color: #8B4513;">The LumiScents Team 🔥</p>
+                        <p style="margin: 0; font-size: 16px; font-weight: bold; color: #8B4513;">The Lumiscents Team 🔥</p>
                         <p style="margin: 5px 0; font-size: 12px; color: #A0522D;">"Illuminating your world with premium scents"</p>
                     </div>
                 </div>
                 <div style="text-align: center; padding: 20px; color: #6B4423; font-size: 12px;">
-                    <p style="margin: 0;">© 2024 LumiScents - Premium Scented Candles</p>
+                    <p style="margin: 0;">© 2024 Lumiscents - Premium Scented Candles</p>
                     <p style="margin: 5px 0 0 0;">Handcrafted with love • Natural ingredients • Eco-friendly</p>
                 </div>
             </div>
@@ -91,7 +91,7 @@ exports.registerUser = async (req, res, next) => {
         try {
             await sendEmail({
                 email: user.email,
-                subject: '🕯️ Verify Your Email - LumiScents',
+                subject: '🕯️ Verify Your Email - Lumiscents',
                 message
             });
 
@@ -289,7 +289,7 @@ exports.forgotPassword = async (req, res, next) => {
     try {
         await sendEmail({
             email: user.email,
-            subject: '🕯️ LumiScents Password Recovery',
+            subject: '🕯️ Lumiscents Password Recovery',
             message
         })
 
@@ -543,7 +543,7 @@ exports.suspendUser = async (req, res, next) => {
                     </p>
                     <hr style="border: none; border-top: 1px solid #DEB887; margin: 30px 0;">
                     <p style="color: #A0522D; font-size: 14px; text-align: center;">
-                        © ${new Date().getFullYear()} LumiScents. All rights reserved.<br>
+                        © ${new Date().getFullYear()} Lumiscents. All rights reserved.<br>
                         "Illuminating your world with premium scents"
                     </p>
                 </div>
@@ -552,7 +552,7 @@ exports.suspendUser = async (req, res, next) => {
 
         await sendEmail({
             email: user.email,
-            subject: subject || '🕯️ Your LumiScents Account Has Been Suspended',
+            subject: subject || '🕯️ Your Lumiscents Account Has Been Suspended',
             message
         });
 
@@ -624,7 +624,7 @@ exports.unsuspendUser = async (req, res, next) => {
 
         await sendEmail({
             email: user.email,
-            subject: subject || '🕯️ Your LumiScents Account Has Been Reactivated',
+            subject: subject || '🕯️ Your Lumiscents Account Has Been Reactivated',
             message
         });
 

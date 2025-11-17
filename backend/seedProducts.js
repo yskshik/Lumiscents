@@ -10,7 +10,7 @@ const products = [
         description: 'Pure and comforting vanilla scent that creates a warm, inviting atmosphere. Perfect for relaxation and creating a cozy home environment.',
         category: 'Classic',
         stock: 50,
-        seller: 'LumiScents',
+        seller: 'Lumiscents',
         isActive: true,
         images: [
             {
@@ -28,7 +28,7 @@ const products = [
         description: 'Calming lavender essential oil blend that promotes relaxation and peaceful sleep. Ideal for bedrooms and meditation spaces.',
         category: 'Floral',
         stock: 45,
-        seller: 'LumiScents',
+        seller: 'Lumiscents',
         isActive: true,
         images: [
             {
@@ -46,7 +46,7 @@ const products = [
         description: 'Romantic rose fragrance with subtle floral notes. Creates an elegant and sophisticated ambiance for special occasions.',
         category: 'Floral',
         stock: 40,
-        seller: 'LumiScents',
+        seller: 'Lumiscents',
         isActive: true,
         images: [
             {
@@ -64,7 +64,7 @@ const products = [
         description: 'Rich, woody sandalwood scent with earthy undertones. Perfect for creating a meditative and grounding atmosphere.',
         category: 'Woody',
         stock: 35,
-        seller: 'LumiScents',
+        seller: 'Lumiscents',
         isActive: true,
         images: [
             {
@@ -82,7 +82,7 @@ const products = [
         description: 'Energizing blend of lemon, orange, and grapefruit. Uplifting and refreshing, perfect for kitchens and morning routines.',
         category: 'Fresh',
         stock: 55,
-        seller: 'LumiScents',
+        seller: 'Lumiscents',
         isActive: true,
         images: [
             {
@@ -100,7 +100,7 @@ const products = [
         description: 'Clean and invigorating eucalyptus scent with menthol notes. Excellent for clearing the mind and supporting respiratory comfort.',
         category: 'Fresh',
         stock: 42,
-        seller: 'LumiScents',
+        seller: 'Lumiscents',
         isActive: true,
         images: [
             {
@@ -118,7 +118,7 @@ const products = [
         description: 'Warm and spicy blend of cinnamon, nutmeg, and clove. The perfect autumn fragrance for cozy evenings.',
         category: 'Spicy',
         stock: 38,
-        seller: 'LumiScents',
+        seller: 'Lumiscents',
         isActive: true,
         images: [
             {
@@ -136,7 +136,7 @@ const products = [
         description: 'Earthy and exotic patchouli with sweet and spicy undertones. Creates a bohemian and relaxing atmosphere.',
         category: 'Earthy',
         stock: 33,
-        seller: 'LumiScents',
+        seller: 'Lumiscents',
         isActive: true,
         images: [
             {
@@ -154,7 +154,7 @@ const products = [
         description: 'Fresh and clean ocean scent with notes of sea salt and marine air. Brings the coastal feeling into your home.',
         category: 'Fresh',
         stock: 48,
-        seller: 'LumiScents',
+        seller: 'Lumiscents',
         isActive: true,
         images: [
             {
@@ -172,7 +172,7 @@ const products = [
         description: 'Rich and warm amber with vanilla and resinous notes. Creates a luxurious and sophisticated ambiance.',
         category: 'Woody',
         stock: 30,
-        seller: 'LumiScents',
+        seller: 'Lumiscents',
         isActive: true,
         images: [
             {

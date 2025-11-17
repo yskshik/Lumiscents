@@ -28,7 +28,7 @@ const Header = () => {
                 <div className="col-12 col-md-4">
                     <div className="navbar-brand">
                         <Link to="/admin/dashboard">
-                            <span className="lumiscents-brand">🕯️ LumiScents</span>
+                            <span className="lumiscents-brand">🕯️ Lumiscents</span>
                         </Link>
                     </div>
                 </div>
@@ -87,7 +87,7 @@ const Header = () => {
             <div className="col-12 col-md-3">
                 <div className="navbar-brand">
                     <Link to="/">
-                        <span className="lumiscents-brand">🕯️ LumiScents</span>
+                        <span className="lumiscents-brand">🕯️ Lumiscents</span>
                     </Link>
                 </div>
             </div>
@@ -190,8 +190,8 @@ const Header = () => {
                                 borderBottom: '1px solid #f0f0f0',
                                 backgroundColor: '#f8f9fa'
                             }}>
-                                <div style={{ fontWeight: 'bold', color: '#333' }}>{user.name}</div>
-                                <div style={{ fontSize: '0.85rem', color: '#333' }}>{user.email}</div>
+                                <div style={{ fontWeight: 'bold', color: '#000000' }}>{user.name}</div>
+                                <div style={{ fontSize: '0.85rem', color: '#000000' }}>{user.email}</div>
                                 <div style={{ 
                                     fontSize: '0.75rem', 
                                     marginTop: '5px',
@@ -310,7 +310,8 @@ const Header = () => {
                             borderRadius: '20px',
                             padding: '8px 20px',
                             fontWeight: '500',
-                            marginRight: '10px'
+                            marginRight: '10px',
+                            color: '#000000'
                         }}>
                             <i className="fa fa-sign-in mr-2"></i>
                             Login
@@ -320,7 +321,7 @@ const Header = () => {
                             padding: '8px 20px',
                             fontWeight: '500',
                             backgroundColor: 'white',
-                            color: 'var(--secondary-color)'
+                            color: '#000000'
                         }}>
                             <i className="fa fa-user-plus mr-2"></i>
                             Register

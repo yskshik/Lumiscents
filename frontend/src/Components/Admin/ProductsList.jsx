@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { DataGrid } from '@mui/x-data-grid';
 import MetaData from '../Layout/MetaData';
@@ -12,21 +12,124 @@ import Swal from 'sweetalert2';
 // Image Carousel Component
 const ImageCarousel = ({ images }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [isDragging, setIsDragging] = useState(false);
+    const [startY, setStartY] = useState(0);
+    const [dragDistance, setDragDistance] = useState(0);
+    const intervalRef = useRef(null);
 
     if (!images || images.length === 0) {
         return <div>No images</div>;
     }
 
+    // Auto-swipe every 1 second
+    useEffect(() => {
+        if (images.length > 1) {
+            intervalRef.current = setInterval(() => {
+                setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+            }, 1000);
+        }
+
+        return () => {
+            if (intervalRef.current) {
+                clearInterval(intervalRef.current);
+            }
+        };
+    }, [images.length]);
+
+    // Pause auto-swipe when user is interacting
+    const pauseAutoSwipe = () => {
+        if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+        }
+    };
+
+    // Resume auto-swipe after interaction
+    const resumeAutoSwipe = () => {
+        if (images.length > 1) {
+            intervalRef.current = setInterval(() => {
+                setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+            }, 1000);
+        }
+    };
+
     const goToPrevious = (e) => {
         e.stopPropagation();
         e.preventDefault();
+        pauseAutoSwipe();
         setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+        setTimeout(resumeAutoSwipe, 2000); // Resume after 2 seconds
     };
 
     const goToNext = (e) => {
         e.stopPropagation();
         e.preventDefault();
+        pauseAutoSwipe();
         setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+        setTimeout(resumeAutoSwipe, 2000); // Resume after 2 seconds
+    };
+
+    const handleMouseDown = (e) => {
+        pauseAutoSwipe();
+        setIsDragging(true);
+        setStartY(e.clientY);
+        setDragDistance(0);
+    };
+
+    const handleMouseMove = (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+        const distance = e.clientY - startY;
+        setDragDistance(distance);
+    };
+
+    const handleMouseUp = () => {
+        if (!isDragging) return;
+        setIsDragging(false);
+        
+        // Swipe threshold - if dragged more than 50px, change image
+        if (Math.abs(dragDistance) > 50) {
+            if (dragDistance > 0) {
+                setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+            } else {
+                setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+            }
+        }
+        setDragDistance(0);
+        setTimeout(resumeAutoSwipe, 2000); // Resume after 2 seconds
+    };
+
+    const handleMouseLeave = () => {
+        if (isDragging) {
+            handleMouseUp();
+        }
+    };
+
+    const handleTouchStart = (e) => {
+        pauseAutoSwipe();
+        setIsDragging(true);
+        setStartY(e.touches[0].clientY);
+        setDragDistance(0);
+    };
+
+    const handleTouchMove = (e) => {
+        if (!isDragging) return;
+        const distance = e.touches[0].clientY - startY;
+        setDragDistance(distance);
+    };
+
+    const handleTouchEnd = () => {
+        if (!isDragging) return;
+        setIsDragging(false);
+        
+        if (Math.abs(dragDistance) > 50) {
+            if (dragDistance > 0) {
+                setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+            } else {
+                setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+            }
+        }
+        setDragDistance(0);
+        setTimeout(resumeAutoSwipe, 2000); // Resume after 2 seconds
     };
 
     return (
@@ -42,7 +145,7 @@ const ImageCarousel = ({ images }) => {
                     onClick={goToPrevious}
                     style={{
                         backgroundColor: 'var(--secondary-color)',
-                        color: 'white',
+                        color: 'black',
                         border: 'none',
                         borderRadius: '50%',
                         width: '25px',
@@ -57,18 +160,36 @@ const ImageCarousel = ({ images }) => {
                 </button>
             )}
 
-            <div style={{ position: 'relative', textAlign: 'center', width: '80px' }}>
+            <div 
+                style={{ 
+                    position: 'relative', 
+                    textAlign: 'center', 
+                    width: '120px',
+                    cursor: isDragging ? 'grabbing' : 'grab',
+                    userSelect: 'none'
+                }}
+                onMouseDown={handleMouseDown}
+                onMouseMove={handleMouseMove}
+                onMouseUp={handleMouseUp}
+                onMouseLeave={handleMouseLeave}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+            >
                 <img
                     src={images[currentIndex].url}
                     alt="Product"
                     style={{
-                        width: '80px',
-                        height: '80px',
+                        width: '120px',
+                        height: '180px',
                         objectFit: 'cover',
                         borderRadius: '8px',
                         border: images[currentIndex].isMain ? '2px solid var(--secondary-color)' : '1px solid #ddd',
-                        backgroundColor: '#f8f9fa'
+                        backgroundColor: '#f8f9fa',
+                        transform: `translateY(${dragDistance * 0.3}px)`, // Visual feedback during vertical drag
+                        transition: isDragging ? 'none' : 'transform 0.3s ease'
                     }}
+                    draggable={false}
                 />
                 {images[currentIndex].isMain && (
                     <span style={{
@@ -76,7 +197,7 @@ const ImageCarousel = ({ images }) => {
                         top: '-5px',
                         right: '-5px',
                         backgroundColor: 'var(--secondary-color)',
-                        color: 'white',
+                        color: 'black',
                         fontSize: '0.6rem',
                         padding: '2px 5px',
                         borderRadius: '8px',
@@ -101,7 +222,7 @@ const ImageCarousel = ({ images }) => {
                     onClick={goToNext}
                     style={{
                         backgroundColor: 'var(--secondary-color)',
-                        color: 'white',
+                        color: 'black',
                         border: 'none',
                         borderRadius: '50%',
                         width: '25px',
@@ -241,7 +362,7 @@ const ProductsList = () => {
         {
             field: 'images',
             headerName: 'Images',
-            width: 150,
+            width: 200,
             renderCell: (params) => <ImageCarousel images={params.value} />
         },
         {
@@ -315,7 +436,7 @@ const ProductsList = () => {
                         className="btn btn-sm"
                         style={{
                             backgroundColor: 'var(--secondary-color)',
-                            color: 'white',
+                            color: 'black',
                             padding: '5px 12px',
                             borderRadius: '5px',
                             border: 'none'
@@ -330,7 +451,7 @@ const ProductsList = () => {
                         className="btn btn-sm"
                         style={{
                             backgroundColor: params.row.isActive ? '#D2691E' : '#8B4513',
-                            color: 'white',
+                            color: 'black',
                             padding: '5px 12px',
                             borderRadius: '5px',
                             border: 'none'
@@ -345,7 +466,7 @@ const ProductsList = () => {
                         className="btn btn-sm"
                         style={{
                             backgroundColor: '#A0522D',
-                            color: 'white',
+                            color: 'black',
                             padding: '5px 12px',
                             borderRadius: '5px',
                             border: 'none'
@@ -360,7 +481,7 @@ const ProductsList = () => {
                         className="btn btn-sm"
                         style={{
                             backgroundColor: '#A0522D',
-                            color: 'white',
+                            color: 'black',
                             padding: '5px 12px',
                             borderRadius: '5px',
                             border: 'none'
@@ -425,7 +546,7 @@ const ProductsList = () => {
                             className="btn"
                             style={{
                                 backgroundColor: 'var(--secondary-color)',
-                                color: 'white',
+                                color: 'black',
                                 borderRadius: '20px',
                                 padding: '10px 20px',
                                 fontWeight: '500'

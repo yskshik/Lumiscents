@@ -230,10 +230,10 @@ const ProductDetails = () => {
                         {/* Image Gallery */}
                         <div className="col-md-6">
                             <div style={{
-                                backgroundColor: 'white',
+                                backgroundColor: 'var(--cream-color)',
                                 borderRadius: '15px',
                                 padding: '20px',
-                                boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+                                boxShadow: 'var(--shadow-soft)',
                                 position: 'sticky',
                                 top: '20px'
                             }}>
@@ -302,14 +302,14 @@ const ProductDetails = () => {
                         {/* Product Info */}
                         <div className="col-md-6">
                             <div style={{
-                                backgroundColor: 'white',
+                                backgroundColor: 'var(--cream-color)',
                                 borderRadius: '15px',
                                 padding: '30px',
-                                boxShadow: '0 4px 12px rgba(0,0,0,0.08)'
+                                boxShadow: 'var(--shadow-soft)'
                             }}>
                                 {/* Product Name */}
                                 <h1 style={{
-                                    color: '#333',
+                                    color: 'var(--text-dark)',
                                     fontWeight: 'bold',
                                     marginBottom: '15px',
                                     fontSize: '2rem'
@@ -354,11 +354,11 @@ const ProductDetails = () => {
                                     marginBottom: '25px',
                                     padding: '15px',
                                     borderRadius: '10px',
-                                    backgroundColor: product.stock > 0 ? '#d4edda' : '#f8d7da'
+                                                                        backgroundColor: product.stock > 0 ? 'var(--cream-color)' : 'var(--warm-beige)'
                                 }}>
                                     {product.stock > 0 ? (
                                         <span style={{
-                                            color: '#155724',
+                                            color: 'var(--text-dark)',
                                             fontSize: '1.1rem',
                                             fontWeight: '600'
                                         }}>
@@ -367,7 +367,7 @@ const ProductDetails = () => {
                                         </span>
                                     ) : (
                                         <span style={{
-                                            color: '#721c24',
+                                            color: 'var(--text-dark)',
                                             fontSize: '1.1rem',
                                             fontWeight: '600'
                                         }}>
@@ -396,7 +396,7 @@ const ProductDetails = () => {
                                                     height: '40px',
                                                     borderRadius: '8px',
                                                     border: '2px solid var(--primary-color)',
-                                                    backgroundColor: 'white',
+                                                    backgroundColor: 'var(--warm-white)',
                                                     color: 'var(--secondary-color)',
                                                     fontSize: '1.2rem',
                                                     fontWeight: 'bold',
@@ -435,7 +435,7 @@ const ProductDetails = () => {
                                                     height: '40px',
                                                     borderRadius: '8px',
                                                     border: '2px solid var(--primary-color)',
-                                                    backgroundColor: 'white',
+                                                    backgroundColor: 'var(--warm-white)',
                                                     color: 'var(--secondary-color)',
                                                     fontSize: '1.2rem',
                                                     fontWeight: 'bold',
@@ -507,7 +507,7 @@ const ProductDetails = () => {
                                         }}
                                         onMouseEnter={(e) => {
                                             e.currentTarget.style.transform = 'scale(1.1)';
-                                            e.currentTarget.style.borderColor = '#8B4513';
+                                            e.currentTarget.style.borderColor = 'var(--primary-color)';
                                         }}
                                         onMouseLeave={(e) => {
                                             e.currentTarget.style.transform = 'scale(1)';
@@ -562,18 +562,19 @@ const ProductDetails = () => {
                                 <div style={{ 
                                     marginTop: '20px', 
                                     textAlign: 'center',
-                                    backgroundColor: '#8B4513',
+                                    backgroundColor: 'var(--primary-color)',
                                     padding: '30px',
                                     borderRadius: '15px',
-                                    boxShadow: '0 8px 25px rgba(139, 69, 19, 0.3)'
+                                    boxShadow: 'var(--shadow-warm)'
                                 }}>
                                     <Button
                                         variant="contained"
+                                        color="secondary"
                                         onClick={handleAddReview}
                                         startIcon={<i className="fa fa-plus"></i>}
                                         sx={{
                                             backgroundColor: 'white',
-                                            color: '#8B4513',
+                                            color: 'var(--primary-color)',
                                             padding: '15px 40px',
                                             borderRadius: '10px',
                                             textTransform: 'none',
@@ -582,8 +583,8 @@ const ProductDetails = () => {
                                             border: '2px solid white',
                                             boxShadow: '0 6px 20px rgba(255, 255, 255, 0.3)',
                                             '&:hover': {
-                                                backgroundColor: '#f8f4f1',
-                                                borderColor: '#f8f4f1',
+                                                backgroundColor: 'var(--accent-color)',
+                                                color: 'white',
                                                 transform: 'translateY(-2px)',
                                                 boxShadow: '0 8px 25px rgba(255, 255, 255, 0.4)'
                                             }

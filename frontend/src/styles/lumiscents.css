@@ -1,20 +1,20 @@
 /* LumiScents - Premium Candle Shop Styles */
 
 :root {
-  --primary-color: #8B4513;
-  --secondary-color: #A0522D;
-  --accent-color: #D2691E;
-  --gold-color: #FFD700;
-  --cream-color: #FFF8DC;
-  --warm-white: #FFFAF0;
-  --soft-orange: #FFB347;
-  --warm-beige: #F5DEB3;
-  --sage: #87A96B;
-  --text-dark: #2C1810;
-  --text-light: #6B4423;
-  --border-light: #DEB887;
-  --shadow-soft: 0 4px 20px rgba(139, 69, 19, 0.1);
-  --shadow-warm: 0 8px 32px rgba(139, 69, 19, 0.15);
+  --primary-color: #6B4423;
+  --secondary-color: #8B5A3C;
+  --accent-color: #A0714F;
+  --gold-color: #D4A574;
+  --cream-color: #FFF8F0;
+  --warm-white: #FFFEFA;
+  --soft-orange: #E8B87F;
+  --warm-beige: #F5E6D3;
+  --sage: #7A8B7A;
+  --text-dark: #3E2723;
+  --text-light: #5D4037;
+  --border-light: #D4A574;
+  --shadow-soft: 0 4px 20px rgba(107, 68, 35, 0.1);
+  --shadow-warm: 0 8px 32px rgba(107, 68, 35, 0.15);
 }
 
 * {
@@ -25,7 +25,7 @@
 
 body {
   font-family: 'Georgia', serif;
-  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  background: linear-gradient(135deg, var(--warm-white) 0%, var(--cream-color) 50%, var(--warm-beige) 100%);
   color: var(--text-dark);
   line-height: 1.6;
   min-height: 100vh;
@@ -98,16 +98,8 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="50" font-size="100" fill="rgba(255,215,0,0.05)">🕯️</text></svg>');
-  background-size: 100px 100px;
-  animation: float 20s infinite linear;
 }
 
-@keyframes float {
-  0% { transform: translateX(0) translateY(0); }
-  50% { transform: translateX(-50px) translateY(-20px); }
-  100% { transform: translateX(0) translateY(0); }
-}
 
 .lumiscents-hero-title {
   font-family: 'Playfair Display', serif;
@@ -605,7 +597,7 @@ body {
 }
 
 .lumiscents-dashboard-title {
-  color: white;
+  color: black;
   margin: 0;
   font-size: 2.5rem;
   font-weight: bold;
@@ -613,10 +605,10 @@ body {
 }
 
 .lumiscents-admin-card {
-  background: linear-gradient(135deg, #ffffff 0%, #fdf8f1 100%);
+  background: linear-gradient(135deg, #eec583 0%, #eec583 100%);
   border-radius: 20px;
   box-shadow: 0 8px 32px rgba(139, 69, 19, 0.1);
-  border: 2px solid #e8d4b0;
+  border: 2px solid #eec583;
   padding: 25px;
   margin-bottom: 25px;
   position: relative;
@@ -758,24 +750,6 @@ body {
   background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
 }
 
-/* Floating Candle Animation */
-.floating-candle {
-  position: absolute;
-  font-size: 1.5rem;
-  opacity: 0.2;
-  animation: float 8s ease-in-out infinite;
-  z-index: 0;
-  pointer-events: none;
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-15px) rotate(3deg);
-  }
-}
 
 .lumiscents-auth-page {
   min-height: 100vh;
@@ -814,15 +788,6 @@ body {
   max-width: 800px;
 }
 
-.floating-candles-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-}
 
 .lumiscents-candles-bg {
   position: absolute;
@@ -874,7 +839,7 @@ body {
 }
 
 .lumiscents-auth-description {
-  color: var(--text-light);
+  color: var(--text-dark);
   font-size: 0.9rem;
   opacity: 0.8;
   line-height: 1.4;
@@ -920,7 +885,7 @@ body {
 }
 
 .lumiscents-form-input::placeholder {
-  color: var(--text-light) !important;
+  color: var(--text-dark) !important;
   opacity: 0.7;
 }
 
@@ -935,7 +900,7 @@ body {
   transform: translateY(-50%);
   background: none;
   border: none;
-  color: var(--text-light);
+  color: var(--text-dark);
   cursor: pointer;
   padding: 5px;
   border-radius: 5px;
@@ -1292,69 +1257,65 @@ body {
   color: var(--primary-color) !important;
 }
 
-/* AGGRESSIVE BROWN THEME OVERRIDE - Force all purple/violet to brown */
-* {
-  color: var(--text-dark) !important;
-  background-color: transparent !important;
-  border-color: var(--border-light) !important;
-}
+/* AGGRESSIVE BROWN THEME OVERRIDE - simplified
+   Goal: default text stays dark on light backgrounds,
+   and brown backgrounds automatically use white text. */
 
-/* Override all purple/violet colors everywhere */
-.text-purple,
-.text-violet,
+/* Override purple/violet backgrounds to use a light elegant brown, keep text readable */
 .bg-purple,
 .bg-violet,
 .btn-purple,
 .btn-violet,
 .border-purple,
 .border-violet,
-[style*="purple"],
-[style*="violet"],
 [style*="#6f42c1"],
 [style*="#6610f2"],
-[style*="#e83e8c"],
-[style*="#6c757d"] {
-  color: var(--primary-color) !important;
-  background-color: var(--primary-color) !important;
-  border-color: var(--primary-color) !important;
+[style*="#e83e8c"] {
+  background-color: var(--secondary-color) !important; /* warm medium brown instead of violet */
+  border-color: var(--secondary-color) !important;
+  color: white !important;
 }
 
-/* Force all cards to be brown theme */
-.card {
-  background-color: var(--warm-white) !important;
-  border-color: var(--border-light) !important;
-  color: var(--text-dark) !important;
+/* Default text utilities */
+body {
+  color: var(--text-dark);
 }
 
-/* Force all buttons to brown theme */
+/* Bootstrap-style primary mapped to brown with white text */
 .btn-primary,
 .btn-secondary,
 .btn-info,
 .btn-success,
 .btn-warning,
 .btn-danger {
-  background-color: var(--primary-color) !important;
-  border-color: var(--primary-color) !important;
+  background-color: #8B4513 !important;
+  border-color: #8B4513 !important;
   color: white !important;
 }
 
-/* Force all text to brown */
-h1, h2, h3, h4, h5, h6 {
-  color: var(--primary-color) !important;
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #A0522D !important;
+  border-color: #A0522D !important;
 }
 
-p, span, div {
-  color: var(--text-dark) !important;
+.text-primary {
+  color: #8B4513 !important;
 }
 
-/* Keep white text on dark backgrounds */
+.bg-primary {
+  background-color: #8B4513 !important;
+  color: white !important;
+}
+
+/* Keep white text utility working as expected */
 .text-white,
 [style*="color: white"],
 .card.text-white * {
   color: white !important;
 }
 
-/* Override Bootstrap default colors */
+/* Subtle defaults for alerts and muted text */
 .alert-info {
   background-color: var(--warm-white) !important;
   border-color: var(--border-light) !important;
@@ -1365,29 +1326,107 @@ p, span, div {
   color: var(--text-light) !important;
 }
 
-/* ULTRA SPECIFIC BOOTSTRAP PURPLE OVERRIDES */
-.btn-primary {
-  background-color: #8B4513 !important;
-  border-color: #8B4513 !important;
+/* Make text white on brown backgrounds */
+.bg-primary, .bg-purple, .bg-violet,
+[style*="background-color: #8B4513"],
+[style*="background-color: #A0522D"],
+[style*="background-color: #D2691E"],
+[style*="background-color: #CD853F"],
+[style*="backgroundColor: #8B4513"],
+[style*="backgroundColor: #A0522D"],
+[style*="backgroundColor: #D2691E"],
+[style*="backgroundColor: #CD853F"] {
+  color: white !important;
 }
 
-.btn-primary:hover {
-  background-color: #A0522D !important;
-  border-color: #A0522D !important;
+/* Make text white in elements with brown gradient backgrounds */
+[style*="#8B4513"],
+[style*="#A0522D"],
+[style*="#D2691E"],
+[style*="#CD853F"] {
+  color: white !important;
 }
 
-.btn-primary:focus {
-  background-color: #8B4513 !important;
-  border-color: #8B4513 !important;
-  box-shadow: 0 0 0 0.2rem rgba(139, 69, 19, 0.25) !important;
+/* Make all child elements white on brown backgrounds */
+[style*="background-color: #8B4513"] *,
+[style*="backgroundColor: #8B4513"] *,
+[style*="background-color: #A0522D"] *,
+[style*="backgroundColor: #A0522D"] *,
+[style*="background-color: #D2691E"] *,
+[style*="backgroundColor: #D2691E"] *,
+[style*="background-color: #CD853F"] *,
+[style*="backgroundColor: #CD853F"] * {
+  color: white !important;
 }
 
-.text-primary {
+/* Specific rules for common brown background elements */
+.lumiscents-wishlist-header,
+.lumiscents-admin-header,
+.lumiscents-brown-section {
+  color: white !important;
+}
+
+/* Ensure Edit Product button in admin Product Details has black text on white background */
+.lumiscents-edit-button,
+.lumiscents-edit-button *,
+.lumiscents-edit-button i {
+  color: #000000 !important;
+}
+
+/* Admin sidebar menu: white text on brown background */
+.lumiscents-admin-sidebar a,
+.lumiscents-admin-sidebar a span,
+.lumiscents-admin-sidebar a i,
+.lumiscents-admin-sidebar button,
+.lumiscents-admin-sidebar button span,
+.lumiscents-admin-sidebar button i {
+  color: #ffffff !important;
+}
+
+/* Make text white in brown buttons */
+.btn-primary, .btn-primary:hover, .btn-primary:focus {
+  color: white !important;
+}
+
+/* Make text white in elements with brown background */
+.lumiscents-auth-page,
+.lumiscents-hero,
+.lumiscents-candles-bg {
+  color: white !important;
+}
+
+/* Keep specific UI elements with their intended colors */
+.btn-outline-primary {
   color: #8B4513 !important;
 }
 
-.bg-primary {
-  background-color: #8B4513 !important;
+.alert-success {
+  color: #155724 !important;
+}
+
+.alert-danger {
+  color: #721c24 !important;
+}
+
+.alert-warning {
+  color: #856404 !important;
+}
+
+.alert-info {
+  color: #0c5460 !important;
+}
+
+.badge {
+  color: white !important;
+}
+
+/* Keep chart colors */
+.recharts-line-curve {
+  stroke: #8B4513 !important;
+}
+
+.recharts-cartesian-grid-line {
+  stroke: #DEB887 !important;
 }
 
 /* Override all Bootstrap purple variants */
@@ -1412,11 +1451,11 @@ p, span, div {
 }
 
 .recharts-legend-item-text {
-  color: #2C1810 !important;
+  color: #000000 !important;
 }
 
 .recharts-cartesian-axis-tick-value {
-  fill: #6B4423 !important;
+  fill: #000000 !important;
 }
 
 .recharts-cartesian-grid-line {

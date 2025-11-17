@@ -459,11 +459,11 @@ footer {
 .update-btn {
   background-color: var(--secondary-color);
   border-color: var(--secondary-color);
-  color: white;
+  color: black;
 }
 
 .update-btn:hover {
-  color: white;
+  color: black;
 }
 
 /* Pagination */
@@ -499,8 +499,17 @@ footer {
   min-width: 100%;
   max-width: 100%;
   background: var(--secondary-color);
-  color: #fff;
+  color: black !important;
   transition: all 0.3s;
+}
+
+/* Force all sidebar text to black */
+#sidebar *,
+#sidebar .sidebar-header *,
+#sidebar ul li a,
+#sidebar ul li.active > a,
+#sidebar a[aria-expanded='true'] {
+  color: black !important;
 }
 #sidebar.active {
   margin-left: -250px;
@@ -533,7 +542,7 @@ footer {
 
 #sidebar ul li.active > a,
 a[aria-expanded='true'] {
-  color: #fff;
+  color: white;
   background: var(--secondary-color);
 }
 a[data-toggle='collapse'] {

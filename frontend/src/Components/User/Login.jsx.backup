@@ -160,7 +160,7 @@ const Login = () => {
                         <div className="lumiscents-auth-header">
                             <div className="lumiscents-auth-icon">🕯️</div>
                             <h2 className="lumiscents-auth-title">Welcome Back</h2>
-                            <p className="lumiscents-auth-subtitle">Sign in to your LumiScents account</p>
+                            <p className="lumiscents-auth-subtitle">Sign in to your Lumiscents account</p>
                         </div>
 
                         {loading ? <Loader /> : (

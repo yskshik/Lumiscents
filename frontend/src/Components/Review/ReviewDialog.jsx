@@ -53,7 +53,7 @@ const ReviewDialog = ({ open, onClose, productId, existingReview, onSuccess }) =
             if (existingReview) {
                 // Update existing review
                 await axios.patch(
-                    `${import.meta.env.VITE_API}/product/review`,
+                    `${import.meta.env.VITE_API}/review`,
                     {
                         rating,
                         comment,
@@ -66,7 +66,7 @@ const ReviewDialog = ({ open, onClose, productId, existingReview, onSuccess }) =
             } else {
                 // Create new review
                 await axios.put(
-                    `${import.meta.env.VITE_API}/product/review`,
+                    `${import.meta.env.VITE_API}/review`,
                     {
                         rating,
                         comment,
@@ -102,7 +102,7 @@ const ReviewDialog = ({ open, onClose, productId, existingReview, onSuccess }) =
             }}
         >
             <DialogTitle style={{
-                color: '#6b46c1',
+                color: 'var(--secondary-color)',
                 fontWeight: 'bold',
                 fontSize: '1.5rem',
                 paddingBottom: '10px'
@@ -170,7 +170,7 @@ const ReviewDialog = ({ open, onClose, productId, existingReview, onSuccess }) =
                 <Button 
                     onClick={onClose}
                     style={{
-                        color: '#666',
+                        color: 'var(--secondary-color)',
                         textTransform: 'none',
                         fontWeight: '600',
                         padding: '8px 20px'
@@ -189,7 +189,7 @@ const ReviewDialog = ({ open, onClose, productId, existingReview, onSuccess }) =
                         fontWeight: '600',
                         padding: '8px 30px',
                         borderRadius: '8px',
-                        boxShadow: '0 4px 12px rgba(107, 70, 193, 0.3)'
+                        boxShadow: '0 4px 12px rgba(139, 69, 19, 0.3)'
                     }}
                 >
                     {loading ? 'Submitting...' : (existingReview ? 'Update Review' : 'Submit Review')}

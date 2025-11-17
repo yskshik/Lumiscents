@@ -76,49 +76,6 @@ const Home = () => {
                 position: 'relative',
                 overflow: 'hidden'
             }}>
-                {/* Floating Candles Background */}
-                <div className="lumiscents-candles-bg">
-                    <div className="floating-candle" style={{
-                        position: 'absolute',
-                        top: '10%',
-                        left: '5%',
-                        fontSize: '4rem',
-                        opacity: 0.3,
-                        animation: 'float 6s ease-in-out infinite'
-                    }}>🕯️</div>
-                    <div className="floating-candle" style={{
-                        position: 'absolute',
-                        top: '60%',
-                        right: '10%',
-                        fontSize: '3rem',
-                        opacity: 0.3,
-                        animation: 'float 8s ease-in-out infinite 1s'
-                    }}>🕯️</div>
-                    <div className="floating-candle" style={{
-                        position: 'absolute',
-                        bottom: '20%',
-                        left: '15%',
-                        fontSize: '3.5rem',
-                        opacity: 0.3,
-                        animation: 'float 7s ease-in-out infinite 2s'
-                    }}>🕯️</div>
-                    <div className="floating-candle" style={{
-                        position: 'absolute',
-                        top: '25%',
-                        right: '25%',
-                        fontSize: '2.8rem',
-                        opacity: 0.3,
-                        animation: 'float 9s ease-in-out infinite 3s'
-                    }}>🕯️</div>
-                    <div className="floating-candle" style={{
-                        position: 'absolute',
-                        bottom: '35%',
-                        right: '5%',
-                        fontSize: '3.2rem',
-                        opacity: 0.3,
-                        animation: 'float 5s ease-in-out infinite 4s'
-                    }}>🕯️</div>
-                </div>
                 
                 <div className="container" style={{ position: 'relative', zIndex: 1 }}>
                     <div className="row align-items-center">
@@ -129,7 +86,8 @@ const Home = () => {
                                 fontSize: '3.5rem', 
                                 fontWeight: 'bold', 
                                 marginBottom: '1rem',
-                                textShadow: '2px 2px 4px rgba(0,0,0,0.2)'
+                                color: 'var(--warm-white)',
+                                textShadow: '2px 2px 4px rgba(0,0,0,0.25)'
                             }}>
                                 The Ultimate <span style={{ 
                                     color: '#ffd700',
@@ -137,7 +95,11 @@ const Home = () => {
                                 }}>Candle</span><br />
                                 Shopping Destination
                             </h1>
-                            <p className="lumiscents-hero-subtitle">
+                            <p className="lumiscents-hero-subtitle" style={{
+                                color: 'var(--warm-white)',
+                                opacity: 0.9,
+                                fontSize: '1.05rem'
+                            }}>
                                 Delivering Aromatherapy to Your Door. Premium scented candles for every mood, 
                                 handpicked with love and care.
                             </p>
@@ -167,7 +129,7 @@ const Home = () => {
                                     marginBottom: '20px',
                                     animation: 'pulse 3s ease-in-out infinite'
                                 }}>🕯️</div>
-                                <h3 style={{ marginBottom: '15px' }}>Welcome to LumiScents</h3>
+                                <h3 style={{ marginBottom: '15px' }}>Welcome to Lumiscents</h3>
                                 <p style={{ color: 'var(--text-light)' }}>Your premium candle shopping destination</p>
                             </div>
                         </div>
@@ -285,49 +247,6 @@ const Home = () => {
                 position: 'relative',
                 overflow: 'hidden'
             }}>
-                {/* Floating Candles Background */}
-                <div className="lumiscents-candles-bg">
-                    <div className="floating-candle" style={{
-                        position: 'absolute',
-                        top: '15%',
-                        right: '8%',
-                        fontSize: '3rem',
-                        opacity: 0.3,
-                        animation: 'float 7s ease-in-out infinite 0.5s'
-                    }}>🕯️</div>
-                    <div className="floating-candle" style={{
-                        position: 'absolute',
-                        bottom: '25%',
-                        right: '20%',
-                        fontSize: '2.5rem',
-                        opacity: 0.3,
-                        animation: 'float 6s ease-in-out infinite 1.5s'
-                    }}>🕯️</div>
-                    <div className="floating-candle" style={{
-                        position: 'absolute',
-                        top: '30%',
-                        left: '10%',
-                        fontSize: '3.5rem',
-                        opacity: 0.3,
-                        animation: 'float 8s ease-in-out infinite 2.5s'
-                    }}>🕯️</div>
-                    <div className="floating-candle" style={{
-                        position: 'absolute',
-                        top: '70%',
-                        left: '25%',
-                        fontSize: '2.7rem',
-                        opacity: 0.3,
-                        animation: 'float 5.5s ease-in-out infinite 3.5s'
-                    }}>🕯️</div>
-                    <div className="floating-candle" style={{
-                        position: 'absolute',
-                        bottom: '15%',
-                        left: '8%',
-                        fontSize: '3.3rem',
-                        opacity: 0.3,
-                        animation: 'float 7.5s ease-in-out infinite 4.5s'
-                    }}>🕯️</div>
-                </div>
                 <div className="container">
                     <div className="text-center mb-5" style={{
                         animation: isVisible ? 'fadeInUp 1s ease-out' : 'none'
@@ -338,7 +257,7 @@ const Home = () => {
                             textShadow: '2px 2px 4px rgba(0,0,0,0.2)',
                             marginBottom: '10px'
                         }}>
-                            Why Choose LumiScents
+                            Why Choose Lumiscents
                         </h2>
                         <p style={{ fontSize: '1.1rem', color: 'var(--text-light)' }}>Experience the difference with our premium candle collection</p>
                     </div>

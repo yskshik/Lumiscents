@@ -118,8 +118,8 @@ const Profile = () => {
                                                 src={user?.avatar?.url || 'https://via.placeholder.com/200'}
                                                 alt={user?.name}
                                                 style={{
-                                                    width: '180px',
-                                                    height: '180px',
+                                                    width: '160px',
+                                                    height: '160px',
                                                     borderRadius: '50%',
                                                     objectFit: 'cover',
                                                     border: '5px solid var(--secondary-color)',

@@ -93,14 +93,10 @@ const UpdateProduct = () => {
     const onChange = (e) => {
         const files = Array.from(e.target.files);
 
-        if (files.length > 10) {
+        if (files.length + images.length + oldImages.length > 10) {
             toast.error('Maximum 10 images allowed');
             return;
         }
-
-        setImages([]);
-        setImagesPreview([]);
-        setOldImages([]);
 
         files.forEach(file => {
             const reader = new FileReader();
@@ -155,8 +151,8 @@ const UpdateProduct = () => {
             description: data.description,
             category: data.category,
             stock: data.stock,
-            seller: 'FleurEase',
-            images: images.length > 0 ? images : oldImages,
+            seller: 'Lumiscents',
+            images: [...oldImages, ...images],
             mainImage: mainImageIndex
         };
 
@@ -385,7 +381,7 @@ const UpdateProduct = () => {
                                                                     top: '5px',
                                                                     left: '5px',
                                                                     backgroundColor: '#6b46c1',
-                                                                    color: 'white',
+                                                                    color: 'black',
                                                                     padding: '3px 8px',
                                                                     borderRadius: '5px',
                                                                     fontSize: '0.75rem',
@@ -406,7 +402,7 @@ const UpdateProduct = () => {
                                                                     className="btn btn-sm"
                                                                     style={{
                                                                         backgroundColor: mainImageIndex === index ? '#6b46c1' : '#6c757d',
-                                                                        color: 'white',
+                                                                        color: 'black',
                                                                         fontSize: '0.75rem',
                                                                         padding: '3px 8px'
                                                                     }}
@@ -493,7 +489,7 @@ const UpdateProduct = () => {
                                                                     top: '5px',
                                                                     left: '5px',
                                                                     backgroundColor: '#6b46c1',
-                                                                    color: 'white',
+                                                                    color: 'black',
                                                                     padding: '3px 8px',
                                                                     borderRadius: '5px',
                                                                     fontSize: '0.75rem',
@@ -514,7 +510,7 @@ const UpdateProduct = () => {
                                                                     className="btn btn-sm"
                                                                     style={{
                                                                         backgroundColor: mainImageIndex === index ? '#6b46c1' : '#6c757d',
-                                                                        color: 'white',
+                                                                        color: 'black',
                                                                         fontSize: '0.75rem',
                                                                         padding: '3px 8px'
                                                                     }}
@@ -549,7 +545,7 @@ const UpdateProduct = () => {
                                                 disabled={updating}
                                                 style={{
                                                     backgroundColor: '#6b46c1',
-                                                    color: 'white',
+                                                    color: 'black',
                                                     borderRadius: '25px',
                                                     padding: '12px 40px',
                                                     fontWeight: '500',
@@ -575,7 +571,7 @@ const UpdateProduct = () => {
                                                 className="btn btn-lg"
                                                 style={{
                                                     backgroundColor: '#6c757d',
-                                                    color: 'white',
+                                                    color: 'black',
                                                     borderRadius: '25px',
                                                     padding: '12px 40px',
                                                     fontWeight: '500',

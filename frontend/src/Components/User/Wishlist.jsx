@@ -103,14 +103,14 @@ const Wishlist = () => {
             <div style={{ backgroundColor: '#f8f9fa', minHeight: '100vh', padding: '40px 0' }}>
                 <div className="container">
                     {/* Header */}
-                    <div style={{
+                    <div className="lumiscents-wishlist-header" style={{
                         background: 'linear-gradient(135deg, #8B4513 0%, #A0522D 50%, #D2691E 100%)',
                         padding: '30px',
                         borderRadius: '15px',
                         marginBottom: '30px',
                         boxShadow: '0 4px 15px rgba(139, 69, 19, 0.3)'
                     }}>
-                        <h1 style={{ color: '#333', fontWeight: 'bold', margin: 0 }}>
+                        <h1 style={{ color: 'white', fontWeight: 'bold', margin: 0 }}>
                             <i className="fa fa-heart mr-2" style={{ color: '#FFF8DC' }}></i>
                             My Wishlist
                         </h1>
@@ -120,15 +120,15 @@ const Wishlist = () => {
                     </div>
 
                     {wishlist.length === 0 ? (
-                        <div className="lumiscents-empty-state">
-                            <div className="lumiscents-empty-icon">🕯️</div>
-                            <h3 className="lumiscents-empty-title">Your wishlist is empty</h3>
-                            <p className="lumiscents-empty-text">
+                        <div className="Lumiscents-empty-state">
+                            <div className="Lumiscents-empty-icon">🕯️</div>
+                            <h3 className="Lumiscents-empty-title">Your wishlist is empty</h3>
+                            <p className="Lumiscents-empty-text">
                                 Save your favorite candles for later!
                             </p>
                             <Link
                                 to="/products"
-                                className="btn lumiscents-btn"
+                                className="btn Lumiscents-btn"
                                 onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--accent-color)'}
                                 onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'var(--secondary-color)'}
                             >

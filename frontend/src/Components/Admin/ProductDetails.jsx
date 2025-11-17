@@ -65,22 +65,22 @@ const ProductDetails = () => {
                     <div className="col-12">
                         {/* Header */}
                         <div className="d-flex justify-content-between align-items-center mb-4" style={{
-                            background: 'linear-gradient(135deg, #6b46c1 0%, #8b5cf6 100%)',
+                            backgroundColor: 'var(--secondary-color)',
                             padding: '20px 30px',
                             borderRadius: '15px',
-                            boxShadow: '0 4px 15px rgba(107, 70, 193, 0.3)'
+                            boxShadow: 'var(--shadow-warm)'
                         }}>
-                            <h1 style={{ color: '#333', fontWeight: 'bold', margin: 0 }}>
+                            <h1 style={{ color: 'white', fontWeight: 'bold', margin: 0 }}>
                                 <i className="fa fa-info-circle mr-2"></i>
                                 Product Details
                             </h1>
                             <div>
                                 <Link
                                     to={`/admin/product/${id}`}
-                                    className="btn mr-2"
+                                    className="btn mr-2 lumiscents-edit-button"
                                     style={{
                                         backgroundColor: 'white',
-                                        color: '#6b46c1',
+                                        color: 'black',
                                         borderRadius: '20px',
                                         padding: '10px 20px',
                                         fontWeight: '600',
@@ -114,19 +114,19 @@ const ProductDetails = () => {
                             {/* Images Section */}
                             <div className="col-md-5">
                                 <div style={{
-                                    background: 'linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%)',
+                                    background: 'linear-gradient(145deg, var(--warm-white) 0%, var(--cream-color) 100%)',
                                     borderRadius: '15px',
                                     padding: '25px',
                                     boxShadow: '0 8px 20px rgba(0,0,0,0.08)',
                                     marginBottom: '20px',
-                                    border: '1px solid rgba(107, 70, 193, 0.1)'
+                                    border: '1px solid var(--border-light)'
                                 }}>
                                     <h4 style={{ 
-                                        color: '#6b46c1', 
+                                        color: 'var(--secondary-color)', 
                                         marginBottom: '20px', 
                                         fontWeight: 'bold',
                                         fontSize: '1.3rem',
-                                        borderBottom: '2px solid #e9d5ff',
+                                        borderBottom: '2px solid var(--border-light)',
                                         paddingBottom: '10px'
                                     }}>
                                         <i className="fa fa-images mr-2"></i>
@@ -147,8 +147,8 @@ const ProductDetails = () => {
                                                 maxHeight: '400px',
                                                 objectFit: 'contain',
                                                 borderRadius: '15px',
-                                                border: '3px solid #e9d5ff',
-                                                boxShadow: '0 4px 15px rgba(107, 70, 193, 0.15)',
+                                                border: '3px solid var(--border-light)',
+                                                boxShadow: 'var(--shadow-soft)',
                                                 backgroundColor: 'white',
                                                 padding: '10px'
                                             }}
@@ -158,7 +158,7 @@ const ProductDetails = () => {
                                                 position: 'absolute',
                                                 top: '10px',
                                                 right: '10px',
-                                                backgroundColor: '#6b46c1',
+                                                backgroundColor: 'var(--primary-color)',
                                                 color: 'white',
                                                 padding: '5px 15px',
                                                 borderRadius: '20px',
@@ -189,7 +189,7 @@ const ProductDetails = () => {
                                                         objectFit: 'cover',
                                                         borderRadius: '8px',
                                                         cursor: 'pointer',
-                                                        border: currentImageIndex === index ? '3px solid #6b46c1' : '2px solid #ddd',
+                                                        border: currentImageIndex === index ? '3px solid var(--secondary-color)' : '2px solid #ddd',
                                                         transition: 'all 0.3s'
                                                     }}
                                                 />
@@ -206,21 +206,19 @@ const ProductDetails = () => {
                             {/* Product Information */}
                             <div className="col-md-7">
                                 <div style={{
-                                    background: 'linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%)',
+                                    background: 'linear-gradient(145deg, var(--warm-white) 0%, var(--cream-color) 100%)',
                                     borderRadius: '15px',
                                     padding: '35px',
                                     boxShadow: '0 8px 20px rgba(0,0,0,0.08)',
                                     marginBottom: '20px',
-                                    border: '1px solid rgba(107, 70, 193, 0.1)'
+                                    border: '1px solid var(--border-light)'
                                 }}>
                                     <h2 style={{ 
-                                        background: 'linear-gradient(135deg, #6b46c1 0%, #8b5cf6 100%)',
-                                        WebkitBackgroundClip: 'text',
-                                        WebkitTextFillColor: 'transparent',
+                                        color: 'var(--secondary-color)',
                                         fontWeight: 'bold', 
                                         marginBottom: '25px',
                                         fontSize: '2rem',
-                                        borderBottom: '3px solid #e9d5ff',
+                                        borderBottom: '3px solid var(--border-light)',
                                         paddingBottom: '15px'
                                     }}>
                                         {product.name}
@@ -229,12 +227,12 @@ const ProductDetails = () => {
                                     <div className="row mb-4">
                                         <div className="col-md-6">
                                             <div style={{
-                                                backgroundColor: '#f8f9fa',
+                                                backgroundColor: 'var(--warm-white)',
                                                 padding: '15px',
                                                 borderRadius: '10px',
-                                                border: '1px solid #e9ecef'
+                                                border: '1px solid var(--border-light)'
                                             }}>
-                                                <strong style={{ color: '#6b46c1', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                                                <strong style={{ color: 'var(--secondary-color)', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                                                     <i className="fa fa-barcode mr-2"></i>Product ID
                                                 </strong><br />
                                                 <span style={{ color: '#333', fontSize: '0.85rem', fontFamily: 'monospace' }}>{product._id}</span>
@@ -251,7 +249,7 @@ const ProductDetails = () => {
                                                     <i className="fa fa-tag mr-2"></i>Category
                                                 </strong><br />
                                                 <span style={{
-                                                    background: 'linear-gradient(135deg, #6b46c1 0%, #8b5cf6 100%)',
+                                                    backgroundColor: 'var(--secondary-color)',
                                                     color: 'white',
                                                     padding: '6px 18px',
                                                     borderRadius: '20px',
@@ -259,7 +257,7 @@ const ProductDetails = () => {
                                                     fontWeight: '600',
                                                     display: 'inline-block',
                                                     marginTop: '5px',
-                                                    boxShadow: '0 2px 8px rgba(107, 70, 193, 0.3)'
+                                                    boxShadow: 'var(--shadow-soft)'
                                                 }}>
                                                     {product.category}
                                                 </span>
@@ -409,39 +407,35 @@ const ProductDetails = () => {
                                 {/* Reviews Section */}
                                 {product.reviews && product.reviews.length > 0 && (
                                     <div style={{
-                                        background: 'linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%)',
+                                        background: 'linear-gradient(145deg, var(--warm-white) 0%, var(--cream-color) 100%)',
                                         borderRadius: '15px',
                                         padding: '35px',
                                         boxShadow: '0 8px 20px rgba(0,0,0,0.08)',
-                                        border: '1px solid rgba(107, 70, 193, 0.1)'
+                                        border: '1px solid var(--border-light)'
                                     }}>
                                         <h4 style={{ 
-                                            background: 'linear-gradient(135deg, #6b46c1 0%, #8b5cf6 100%)',
-                                            WebkitBackgroundClip: 'text',
-                                            WebkitTextFillColor: 'transparent',
+                                            color: 'var(--secondary-color)',
                                             marginBottom: '25px', 
                                             fontWeight: 'bold',
                                             fontSize: '1.5rem',
-                                            borderBottom: '2px solid #e9d5ff',
+                                            borderBottom: '2px solid var(--border-light)',
                                             paddingBottom: '12px'
                                         }}>
-                                            <i className="fa fa-comments mr-2"></i>
                                             Customer Reviews ({product.reviews.length})
                                         </h4>
-
                                         {product.reviews.map((review, index) => (
                                             <div key={index} style={{
                                                 padding: '20px',
                                                 marginBottom: '15px',
-                                                background: 'linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%)',
+                                                background: 'linear-gradient(145deg, var(--warm-white) 0%, var(--cream-color) 100%)',
                                                 borderRadius: '12px',
-                                                borderLeft: '5px solid #6b46c1',
+                                                borderLeft: '5px solid var(--secondary-color)',
                                                 boxShadow: '0 3px 10px rgba(0,0,0,0.05)',
                                                 transition: 'transform 0.2s, box-shadow 0.2s'
                                             }}
                                             onMouseEnter={(e) => {
                                                 e.currentTarget.style.transform = 'translateX(5px)';
-                                                e.currentTarget.style.boxShadow = '0 5px 15px rgba(107, 70, 193, 0.15)';
+                                                e.currentTarget.style.boxShadow = '0 5px 15px rgba(0,0,0,0.15)';
                                             }}
                                             onMouseLeave={(e) => {
                                                 e.currentTarget.style.transform = 'translateX(0)';
