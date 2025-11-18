@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Visibility, VisibilityOff, Person, Lock, Email, LocalFireDepartment, Facebook, Google, Login as LoginIcon, CloudUpload } from '@mui/icons-material';
+import { signInWithPopup } from 'firebase/auth';
 import { login, googleLogin, facebookLogin } from '../../api/auth';
 import { authenticate } from '../../Utils/helpers';
+import { auth, googleProvider } from '../../firebase';
 import '../../styles/lumiscents.css';
 
 const Login = () => {
@@ -44,11 +46,26 @@ const Login = () => {
     const handleGoogleSignIn = async () => {
         setLoading(true);
         try {
-            // Implement Google OAuth - for now, simulate
-            // In production, you would integrate with Google OAuth API
-            toast.success('Google sign in will be implemented soon!');
+            // Use Firebase Google OAuth
+            const result = await signInWithPopup(auth, googleProvider);
+
+            const user = result.user;
+            const googleData = {
+                name: user.displayName,
+                email: user.email,
+                avatar: user.photoURL || '',
+                provider: 'google',
+                providerId: user.uid,
+            };
+
+            const response = await googleLogin(googleData);
+
+            authenticate(response, () => {
+                toast.success('Welcome back with Google!');
+                navigate('/');
+            });
         } catch (error) {
-            toast.error('Google sign in failed');
+            toast.error(error.message || 'Google sign in failed');
         } finally {
             setLoading(false);
         }

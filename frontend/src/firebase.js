@@ -1,19 +1,31 @@
 import { initializeApp } from 'firebase/app';
+import { getAnalytics } from 'firebase/analytics';
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 // Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyCm1luQ9QTdZf3T6lVm4uvRnxHOge1AwgI",
-    authDomain: "fLumiscents-e18ea.firebaseapp.com",
-    projectId: "fLumiscents-e18ea",
-    storageBucket: "fLumiscents-e18ea.firebasestorage.app",
-    messagingSenderId: "235554798693",
-    appId: "1:235554798693:web:625e49247db69e3ae7da8c",
-    measurementId: "G-6NYM7NE7PJ"
+    apiKey: "AIzaSyA_FoLZNMOJ4IQkXHC5Y8yZawaJ9hFWih4",
+    authDomain: "lumiscents-app.firebaseapp.com",
+    projectId: "lumiscents-app",
+    storageBucket: "lumiscents-app.firebasestorage.app",
+    messagingSenderId: "883019846622",
+    appId: "1:883019846622:web:0e44c6c08bf8b34f27c34f",
+    measurementId: "G-YRLF17VLHV"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+let analyticsInstance = null;
+
+if (typeof window !== 'undefined' && firebaseConfig.measurementId) {
+    try {
+        analyticsInstance = getAnalytics(app);
+    } catch (error) {
+        console.warn('Firebase Analytics not initialized:', error);
+    }
+}
+
+export const analytics = analyticsInstance;
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
 

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Button, Alert } from 'react-bootstrap';
 import FacebookLogin from '@greatsumini/react-facebook-login';
-import { signInWithPopup, GoogleAuthProvider, FacebookAuthProvider } from 'firebase/auth';
-import { auth } from '../../firebase';
+import { signInWithPopup, FacebookAuthProvider } from 'firebase/auth';
+import { auth, googleProvider } from '../../firebase';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
@@ -52,8 +52,7 @@ const SocialLogin = ({ onSuccess }) => {
     const handleGoogleLogin = async () => {
         try {
             setLoading(prev => ({ ...prev, google: true }));
-            const provider = new GoogleAuthProvider();
-            const result = await signInWithPopup(auth, provider);
+            const result = await signInWithPopup(auth, googleProvider);
             
             const userData = {
                 name: result.user.displayName,
@@ -84,8 +83,7 @@ const SocialLogin = ({ onSuccess }) => {
     const handleFirebaseGoogleLogin = async () => {
         try {
             setLoading(prev => ({ ...prev, firebase: true }));
-            const provider = new GoogleAuthProvider();
-            const result = await signInWithPopup(auth, provider);
+            const result = await signInWithPopup(auth, googleProvider);
             
             const userData = {
                 name: result.user.displayName,

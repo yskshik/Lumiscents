@@ -313,12 +313,9 @@ const Products = () => {
             // Fetch all products for autocomplete
             const { data } = await axios.get(`${import.meta.env.VITE_API}/products?page=1&limit=100`);
             
-            // Create options array with product names and categories
-            const productNames = data.products.map(p => ({ label: p.name, type: 'Product', value: p.name }));
-            const uniqueCategories = [...new Set(data.products.map(p => p.category))]
-                .map(cat => ({ label: cat, type: 'Category', value: cat }));
-            
-            setSearchOptions([...productNames, ...uniqueCategories]);
+            // Create options array with product names only
+            const productNames = data.products.map(p => ({ label: p.name, value: p._id }));
+            setSearchOptions(productNames);
         } catch (error) {
             console.error('Error fetching search options');
         }
@@ -359,7 +356,17 @@ const Products = () => {
             
             const { data } = await axios.get(link);
             
+            // Start with products returned from backend
             let filteredProducts = data.products;
+
+            // Extra safety: enforce price range on frontend as well
+            if (Array.isArray(price) && price.length === 2) {
+                const [minPrice, maxPrice] = price;
+                filteredProducts = filteredProducts.filter(p => {
+                    const productPrice = Number(p.price) || 0;
+                    return productPrice >= minPrice && productPrice <= maxPrice;
+                });
+            }
             
             // Filter by multiple ratings if selected
             if (rating.length > 0) {
@@ -437,16 +444,8 @@ const Products = () => {
 
     const handleSearchSelect = (event, value) => {
         if (value) {
-            if (value.type === 'Product') {
-                // Search by product name
-                navigate(`/products/${value.value}`);
-            } else if (value.type === 'Category') {
-                // Filter by category
-                setCategory(value.value);
-                setProducts([]);
-                setPage(1);
-                setHasMore(true);
-            }
+            // Navigate directly to the selected product details
+            navigate(`/product/${value.value}`);
         }
     };
 

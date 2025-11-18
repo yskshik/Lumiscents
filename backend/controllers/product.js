@@ -289,6 +289,20 @@ exports.createProductReview = async (req, res, next) => {
         });
     }
 
+    // Check if user has purchased this product and the order is not cancelled
+    const hasPurchased = await Order.findOne({
+        user: req.user._id,
+        'orderItems.product': productId,
+        orderStatus: { $ne: 'Cancelled' }
+    });
+
+    if (!hasPurchased) {
+        return res.status(403).json({
+            success: false,
+            message: 'You can only review products you have purchased and not cancelled.'
+        });
+    }
+
     // Users can now add multiple reviews - just push the new review
     product.reviews.push(review);
     product.numOfReviews = product.reviews.length;

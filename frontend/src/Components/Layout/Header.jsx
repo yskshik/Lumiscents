@@ -93,21 +93,7 @@ const Header = () => {
             </div>
 
             <div className="col-12 col-md-6 mt-2 mt-md-0">
-                {user && (
-                    <div className="input-group">
-                        <input
-                            type="text"
-                            id="search_field"
-                            className="form-control lumiscents-search"
-                            placeholder="Search candles..."
-                        />
-                        <div className="input-group-append">
-                            <button id="search_btn" className="btn lumiscents-btn">
-                                <i className="fa fa-search" aria-hidden="true"></i>
-                            </button>
-                        </div>
-                    </div>
-                )}
+                {/* Search bar removed from header */}
             </div>
 
             <div className="col-12 col-md-3 mt-4 mt-md-0 text-center d-flex align-items-center justify-content-end" style={{ gap: '10px' }}>
@@ -323,8 +309,10 @@ const Header = () => {
                             backgroundColor: 'white',
                             color: '#000000'
                         }}>
-                            <i className="fa fa-user-plus mr-2"></i>
-                            Register
+                            <i className="fa fa-user-plus mr-2"  ></i>
+                          Register
+                            
+                            
                         </Link>
                     </div>
                 )}
